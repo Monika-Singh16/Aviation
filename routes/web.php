@@ -30,6 +30,8 @@ use App\Http\Controllers\AboutPageController;
 
 use App\Http\Controllers\WhyVaaController;
 
+use App\Http\Controllers\AdvantageController;
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -47,7 +49,8 @@ Route::view('/contact-us', 'pages.contact-us');
 Route::view('/work-with-us', 'pages.work-with-us');
 Route::view('/faq', 'pages.faq');
 Route::view('/enquire', 'pages.enquire');
-Route::view('/the-vaa-advantages', 'pages.the-vaa-advantages');
+Route::get('/the-vaa-advantages', [HomeController::class, 'advantage']);
+// Route::view('/the-vaa-advantages', 'pages.the-vaa-advantages');
 
 
 /*
@@ -126,6 +129,9 @@ Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
 
         // Facilities Routes
         Route::resource('facilities', FacilityController::class);
+
+        // Advantages Routes
+        Route::resource('advantage', AdvantageController::class);
 
         // Careers Routes
         Route::resource('careers', CareerController::class);

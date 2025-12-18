@@ -614,11 +614,11 @@
 
 
 @section('content')
-  <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Start Banner
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <section class="banner-section inner-banner-section bg-overlay-black bg_img"
-            data-background="{{asset('assets/images/aviation/home_page/bgimg/inner-bg.png')}}">
+            data-background="{{asset( $advantage->banner_image)}}">
             <div class="container-fluid">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-xl-12 text-center">
@@ -637,36 +637,29 @@
                 </div>
             </div>
     </section>
-   <section class="advantages-hero">
+    <section class="advantages-hero">
         <div class="container">
             <div class="hero-content-wrapper">
                 <span class="hero-badge">
-                    <i class="fas fa-star mr-2"></i>Why Choose VAA
+                    <i class="fas fa-star mr-2"></i>{{ $advantage->sub_title }}
                 </span>
-                <h1 class="hero-main-title">
-                    The <span>VAA Advantage</span><br>Excellence in Aviation Training
+                <h1 class="hero-main-title mx-auto">
+                    {{ $advantage->title }}
                 </h1>
                 <p class="hero-description">
-                    Vihanga Aviation Academy stands out as a premier institution for pilot training with unmatched facilities, experienced faculty, and a proven track record of producing successful aviation professionals.
+                    {{ $advantage->short_description }}
                 </p>
                 <div class="hero-stats">
-                    <div class="hero-stat-item">
-                        <span class="hero-stat-number">500+</span>
-                        <span class="hero-stat-label">Pilots Trained</span>
-                    </div>
-                    <div class="hero-stat-item">
-                        <span class="hero-stat-number">95%</span>
-                        <span class="hero-stat-label">Success Rate</span>
-                    </div>
-                    <div class="hero-stat-item">
-                        <span class="hero-stat-number">20+</span>
-                        <span class="hero-stat-label">Modern Aircraft</span>
-                    </div>
-                    <div class="hero-stat-item">
-                        <span class="hero-stat-number">15+</span>
-                        <span class="hero-stat-label">Years Experience</span>
-                    </div>
+                    @if(!empty($advantage->ratings) && is_array($advantage->ratings))
+                        @foreach($advantage->ratings as $key => $value)
+                            <div class="hero-stat-item">
+                                <span class="hero-stat-number">{{ $key }}</span>
+                                <span class="hero-stat-label">{{ $value }}</span>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
+
             </div>
         </div>
     </section>

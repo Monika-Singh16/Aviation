@@ -403,6 +403,20 @@
                         route('about_page.index') .
                         '" class="submenu">View About Page </a>',
                 ) !!}
+
+                {{-- Advantage --}}
+                {!! menuItem(
+                    'Advantage',
+                    'fa-solid fa-building',
+                    '
+                                                        <a href="' .
+                        route('advantage.index') .
+                        '" class="submenu">View Advantage </a>
+                                                        <a href="' .
+                        route('advantage.create') .
+                        '" class="submenu">Add Advantage </a>
+                                                    ',
+                ) !!}
             </nav>
         </aside>
 

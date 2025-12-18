@@ -16,6 +16,7 @@ use App\Models\VisionMission;
 use App\Models\FAQ;
 use App\Models\Hero;
 use App\Models\AboutPage;
+use App\Models\Advantage;
 
 class HomeController extends Controller
 {
@@ -51,6 +52,11 @@ class HomeController extends Controller
         $faq = FAQ::first();
         $faqs = FAQ::whereNull(['heading', 'description'])->get();
         return view('pages.about', compact('about_page','testimonial','testimonials','why_choose','why_chooses', 'vision_mission', 'faq', 'faqs'));
+    }
+
+    public function advantage (){
+        $advantage = Advantage::where('is_active', 1)->first();
+        return view('pages.the-vaa-advantages', compact('advantage'));
     }
     
 }
