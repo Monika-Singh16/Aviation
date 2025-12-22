@@ -46,7 +46,7 @@
             <td class="border px-4 py-2">{{ Str::limit($course->description, 50) }}</td> --}}
 
             <!-- Image -->
-            <td class="border px-4 py-2 text-center">
+            {{-- <td class="border px-4 py-2 text-center">
                 @if($course->image)
                     <img src="{{ asset($course->image) }}"
                         alt="Course Image"
@@ -54,7 +54,7 @@
                 @else
                     <span class="text-gray-500 text-sm">No image</span>
                 @endif
-            </td>
+            </td> --}}
 
             <!-- Actions -->
             <td class="px-4 py-3 border">
