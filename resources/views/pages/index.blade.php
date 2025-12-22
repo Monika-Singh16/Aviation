@@ -1572,7 +1572,7 @@
                                                 <div class="course-content">
                                                     <div class="course-content-header">
                                                         <h3 class="title">
-                                                            <a href="{{ url('/courses-details') }}">
+                                                            <a href="{{ url('/courses') }}">
                                                                 {{ $item->course_name }}
                                                             </a>
                                                         </h3>
@@ -1582,7 +1582,7 @@
                                                         <p>{{ $item->description }}</p>
                                                     </div>
                                                     <div class="course-content-footer">
-                                                        <a href="{{ url('/courses-details') }}" class="btn--base">
+                                                        <a href="{{ url('/courses') }}" class="btn--base">
                                                             Enroll Now
                                                             <i class="icon-Group-2361 ml-2"></i>
                                                         </a>

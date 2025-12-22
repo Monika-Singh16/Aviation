@@ -668,64 +668,20 @@
     <section class="why-choose-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Our Strengths</div>
-                <h2 class="section-title text-white">Why Choose Vihanga Aviation Academy</h2>
+                <div class="section-subtitle">{{ $strength->sub_title }}</div>
+                <h2 class="section-title text-white">{{ $strength->title }}</h2>
             </div>
             <div class="row">
+                @foreach($strengths as $card)
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="advantage-card">
-                        <div class="advantage-icon">
-                            <i class="fas fa-certificate"></i>
+                        <div class="advantage-icon"><i class="{{ $card->card_icon }}"></i>
                         </div>
-                        <h4>DGCA Approved</h4>
-                        <p>Fully approved by DGCA (Directorate General of Civil Aviation) ensuring industry-recognized certifications and compliance with international aviation standards.</p>
+                        <h4>{{ $card->card_title }}</h4>
+                        <p>{{ $card->card_description }}</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="advantage-card">
-                        <div class="advantage-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <h4>Expert Instructors</h4>
-                        <p>Learn from highly experienced instructors with thousands of flying hours and extensive knowledge in aviation training and commercial operations.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="advantage-card">
-                        <div class="advantage-icon">
-                            <i class="fas fa-plane"></i>
-                        </div>
-                        <h4>Modern Fleet</h4>
-                        <p>Train on well-maintained modern aircraft equipped with latest avionics and safety systems to prepare you for real-world aviation challenges.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="advantage-card">
-                        <div class="advantage-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h4>International Standards</h4>
-                        <p>Training curriculum aligned with international aviation standards making our graduates eligible for global aviation opportunities and careers.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="advantage-card">
-                        <div class="advantage-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h4>Job Placement Support</h4>
-                        <p>Strong industry connections and dedicated placement cell to help you secure positions with leading airlines and aviation companies worldwide.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="advantage-card">
-                        <div class="advantage-icon">
-                            <i class="fas fa-rupee-sign"></i>
-                        </div>
-                        <h4>Affordable Fees</h4>
-                        <p>Competitive fee structure with flexible payment options and scholarship opportunities making quality aviation training accessible to aspiring pilots.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -733,74 +689,65 @@
     <!-- Facilities Section -->
     <section class="facilities-section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-subtitle">World-Class Infrastructure</div>
-                <h2 class="section-title">State-of-the-Art Facilities</h2>
-            </div>
+
+            {{-- Section Header (use first record only) --}}
+            @if($infrastructures->count())
+                <div class="section-header">
+                    <div class="section-subtitle">
+                        {{ $infrastructure->sub_title }}
+                    </div>
+                    <h2 class="section-title">
+                        {{ $infrastructure->title }}
+                    </h2>
+                </div>
+            @endif
+
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="facility-card">
-                        <div class="facility-image">
-                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop" alt="Flight Simulators">
-                            <div class="facility-overlay">
-                                <div class="facility-icon-overlay">
-                                    <i class="fas fa-gamepad"></i>
+
+                {{-- CARDS LOOP --}}
+                @foreach($infrastructures as $infrastructure)
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="facility-card">
+
+                            <!-- Image -->
+                            <div class="facility-image">
+                                @if($infrastructure->infrastructure_image)
+                                    <img
+                                        src="{{ asset($infrastructure->infrastructure_image) }}"
+                                        alt="{{ $infrastructure->infrastructure_title }}"
+                                        class="img-fluid">
+                                @endif
+
+                                <!-- Icon Overlay -->
+                                <div class="facility-overlay">
+                                    <div class="facility-icon-overlay">
+                                        <i class="{{ $infrastructure->infrastructure_icon }}"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="facility-content">
-                            <h4>Advanced Flight Simulators</h4>
-                            <p>Practice in realistic flight conditions with our cutting-edge simulators before actual flying.</p>
-                            <ul class="facility-features">
-                                <li><i class="fas fa-check"></i> Full motion simulators</li>
-                                <li><i class="fas fa-check"></i> Weather simulation</li>
-                                <li><i class="fas fa-check"></i> Emergency procedures</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="facility-card">
-                        <div class="facility-image">
-                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop" alt="Modern Aircraft">
-                            <div class="facility-overlay">
-                                <div class="facility-icon-overlay">
-                                    <i class="fas fa-plane-departure"></i>
-                                </div>
+
+                            <!-- Content -->
+                            <div class="facility-content">
+                                <h4>{{ $infrastructure->infrastructure_title }}</h4>
+                                <p>{{ $infrastructure->infrastructure_description }}</p>
+
+                                <!-- Features -->
+                                @if(!empty($infrastructure->features) && is_array($infrastructure->features))
+                                    <ul class="facility-features">
+                                        @foreach($infrastructure->features as $feature)
+                                            <li>
+                                                <i class="fas fa-check"></i>
+                                                {{ $feature }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </div>
-                        </div>
-                        <div class="facility-content">
-                            <h4>Modern Aircraft Fleet</h4>
-                            <p>Extensive fleet of well-maintained aircraft for comprehensive training experience.</p>
-                            <ul class="facility-features">
-                                <li><i class="fas fa-check"></i> Single & multi-engine</li>
-                                <li><i class="fas fa-check"></i> Latest avionics</li>
-                                <li><i class="fas fa-check"></i> Regular maintenance</li>
-                            </ul>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="facility-card">
-                        <div class="facility-image">
-                            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=400&fit=crop" alt="Classrooms">
-                            <div class="facility-overlay">
-                                <div class="facility-icon-overlay">
-                                    <i class="fas fa-book-reader"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="facility-content">
-                            <h4>Smart Classrooms</h4>
-                            <p>Technology-enabled learning spaces for comprehensive ground training and theory classes.</p>
-                            <ul class="facility-features">
-                                <li><i class="fas fa-check"></i> Interactive learning</li>
-                                <li><i class="fas fa-check"></i> Digital resources</li>
-                                <li><i class="fas fa-check"></i> Audio-visual aids</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
@@ -809,39 +756,29 @@
     <section class="success-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Proven Track Record</div>
-                <h2 class="section-title text-white">Our Success in Numbers</h2>
+                <div class="section-subtitle">{{ $record->sub_title }}</div>
+                <h2 class="section-title text-white">{{ $record->title }}</h2>
             </div>
             <div class="success-stats-grid">
-                <div class="success-stat-card">
-                    <div class="success-stat-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <span class="success-stat-number">500+</span>
-                    <span class="success-stat-text">Graduates Successfully Placed</span>
-                </div>
-                <div class="success-stat-card">
-                    <div class="success-stat-icon">
-                        <i class="fas fa-percentage"></i>
-                    </div>
-                    <span class="success-stat-number">95%</span>
-                    <span class="success-stat-text">First Attempt Pass Rate</span>
-                </div>
-                <div class="success-stat-card">
-                    <div class="success-stat-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <span class="success-stat-number">50+</span>
-                    <span class="success-stat-text">Partner Airlines & Companies</span>
-                </div>
-                <div class="success-stat-card">
-                    <div class="success-stat-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <span class="success-stat-number">100%</span>
-                    <span class="success-stat-text">DGCA Compliance Record</span>
-                </div>
-            </div>
+            @foreach($records as $card)
+                @php
+                    $texts = is_array($card->text)
+                        ? $card->text
+                        : json_decode($card->text, true);
+                @endphp
+                @if(!empty($texts))
+                    @foreach($texts as $key => $value)
+                        <div class="success-stat-card">
+                            <div class="success-stat-icon">
+                                <i class="{{ $card->icon }}"></i>
+                            </div>
+                            <span class="success-stat-number">{{ $key }}</span>
+                            <span class="success-stat-text">{{ $value }}</span>
+                        </div>
+                    @endforeach
+                @endif
+            @endforeach
+        </div>
         </div>
     </section>
 
@@ -850,46 +787,21 @@
         <div class="container">
             <div class="training-content">
                 <div class="section-header">
-                    <div class="section-subtitle">Training Excellence</div>
-                    <h2 class="section-title">Comprehensive Training Approach</h2>
+                    <div class="section-subtitle">{{ $excellence->sub_title }}</div>
+                    <h2 class="section-title">{{ $excellence->title }}</h2>
                 </div>
                 <div class="row">
+                @foreach($excellences as $div)
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="training-card">
                             <div class="training-card-icon">
-                                <i class="fas fa-book"></i>
+                                <i class="{{ $div->icon }}"></i>
                             </div>
-                            <h5>Theory Classes</h5>
-                            <p>In-depth ground school covering all subjects required for DGCA exams with experienced instructors.</p>
+                            <h5>{{ $div->card_title }}</h5>
+                            <p>{{ $div->card_description }}</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="training-card">
-                            <div class="training-card-icon">
-                                <i class="fas fa-helicopter"></i>
-                            </div>
-                            <h5>Practical Training</h5>
-                            <p>Hands-on flight training with modern aircraft ensuring real-world aviation experience.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="training-card">
-                            <div class="training-card-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h5>Simulator Sessions</h5>
-                            <p>Advanced simulator training for mastering various flight scenarios and emergency procedures.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="training-card">
-                            <div class="training-card-icon">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <h5>Soft Skills</h5>
-                            <p>Communication, leadership, and personality development for successful aviation career.</p>
-                        </div>
-                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
@@ -900,8 +812,11 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-subtitle">Compare & Choose</div>
-                <h2 class="section-title text-white">VAA vs Other Aviation Academies</h2>
+                <h2 class="section-title text-white">
+                    {{ $academic_feature->sub_title }}
+                </h2>
             </div>
+
             <div class="comparison-table-wrapper">
                 <table class="comparison-table table mb-0">
                     <thead>
@@ -911,62 +826,49 @@
                             <th>Other Academies</th>
                         </tr>
                     </thead>
+
                     <tbody>
+                        @foreach ($academic_features as $feature)
                         <tr>
-                            <td>DGCA Approved</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
+                            <td>{{ $feature->title }}</td>
+
+                            {{-- ================= Vihanga ================= --}}
+                            <td class="text-center" style="font-size: 18px">
+                                @if($feature->vihanga_type === 'boolean')
+                                    @if($feature->vihanga_bool)
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    @else
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    @endif
+                                @else
+                                    <span class="fw-bold">
+                                        {{ $feature->vihanga_text }}
+                                    </span>
+                                @endif
+                            </td>
+
+                            {{-- ================= Other ================= --}}
+                            <td class="text-center" style="font-size: 18px">
+                                @if($feature->other_type === 'boolean')
+                                    @if($feature->other_bool)
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    @else
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    @endif
+                                @else
+                                    <span class="fw-bold">
+                                        {{ $feature->other_text }}
+                                    </span>
+                                @endif
+                            </td>
                         </tr>
-                        <tr>
-                            <td>Modern Aircraft Fleet</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Advanced Flight Simulators</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Experienced Instructors (5000+ hrs)</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Job Placement Assistance</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Flexible Payment Options</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>International Standards</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Smart Classrooms</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Student Success Rate</td>
-                            <td><strong>95%</strong></td>
-                            <td><strong>70-80%</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Industry Partnerships</td>
-                            <td><i class="fas fa-check-circle check-icon"></i></td>
-                            <td><i class="fas fa-times-circle cross-icon"></i></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
+
 
     <!-- CTA Section -->
     <section class="cta-vaa-section">

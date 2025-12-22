@@ -16,7 +16,12 @@ use App\Models\VisionMission;
 use App\Models\FAQ;
 use App\Models\Hero;
 use App\Models\AboutPage;
+use App\Models\AcademicFeature;
 use App\Models\Advantage;
+use App\Models\Strength;
+use App\Models\Infrastructure;
+use App\Models\Record;
+use App\Models\Excellence;
 
 class HomeController extends Controller
 {
@@ -56,7 +61,19 @@ class HomeController extends Controller
 
     public function advantage (){
         $advantage = Advantage::where('is_active', 1)->first();
-        return view('pages.the-vaa-advantages', compact('advantage'));
+        $strength = Strength::first();
+        $strengths = Strength::get();
+        // return $strengths;
+        $infrastructure = Infrastructure::first();
+        $infrastructures = Infrastructure::get();
+        $record = Record::first();
+        $records = Record::get();
+        $excellence = Excellence::first();
+        $excellences = Excellence::get();
+        $academic_feature = AcademicFeature::first();
+        $academic_features = AcademicFeature::get();
+        return view('pages.the-vaa-advantages', compact('advantage','strength', 'strengths','infrastructure','infrastructures', 
+        'record', 'records','excellence', 'excellences','academic_feature', 'academic_features'));
     }
     
 }

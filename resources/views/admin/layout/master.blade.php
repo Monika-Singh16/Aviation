@@ -36,7 +36,7 @@
     <div class="flex min-h-screen" x-data="{ collapsed: false }">
 
         <!-- Sidebar -->
-        <aside id="sidebar" :class="collapsed ? 'w-20' : 'w-64'"
+        <aside id="sidebar" :class="collapsed ? 'w-20' : 'w-72'"
             class="bg-[rgb(26,32,53)] flex-shrink-0 transition-all duration-300">
             <div class="p-6 flex items-center justify-between border-b border-gray-700">
                 <img src="{{ asset('assets/images/aviation/logo1.png') }}" alt="Logo"
@@ -62,7 +62,7 @@
                         return '
             <div x-data="{ open: false }">
                 <button @click="open=!open"
-                        class="w-full flex items-center justify-between py-2.5 px-6 rounded group">
+                        class="w-full flex items-center justify-between py-2.5 px-2 rounded group">
                     <div class="flex items-center space-x-3">
                         <i class="' .
                             $icon .
@@ -80,7 +80,7 @@
                 </button>
 
                 <div x-show="open && !collapsed" x-cloak
-                     class="ml-8 mt-1 border-l border-gray-600 pl-4 space-y-1">
+                     class="ml-5 mt-1  pl-2 space-y-1">
                      ' .
                             $routes .
                             '
@@ -138,16 +138,6 @@
                     <span x-show="!collapsed">Role Permissions</span>
                 </a>
 
-               {{-- Hero Banner --}}
-                    {!! menuItem(
-                        'Hero Banner',
-                        'fa-solid fa-circle-info',
-                        '
-                            <a href="' . route('hero.index') . '" class="submenu">View Hero Banner</a>
-                        '
-                    ) !!}
-                   
-
                 {{-- Highlights --}}
                 {{-- {!! menuItem(
                     'Highlights',
@@ -172,18 +162,6 @@
                     '
                 ) !!}
 
-
-                {{-- About Us --}}
-                {!! menuItem(
-                    'About Us',
-                    'fa-solid fa-circle-info',
-                    '
-                        <a href="' .
-                        route('about.index') .
-                        '" class="submenu">View About</a>
-                    ',
-                ) !!}
-
                 {{-- Highlights --}}
                 {{-- {!! menuItem(
                     'Highlights',
@@ -197,34 +175,6 @@
                         '" class="submenu">Add Highlight</a>
                                     ',
                 ) !!} --}}
-
-                {{-- Courses --}}
-                {!! menuItem(
-                    'Courses',
-                    'fa-solid fa-graduation-cap',
-                    '
-                                                        <a href="' .
-                        route('courses.index') .
-                        '" class="submenu">View Courses</a>
-                                                        <a href="' .
-                        route('courses.create') .
-                        '" class="submenu">Add Course</a>
-                                                    ',
-                ) !!}
-
-                {{-- Cta --}}
-                {!! menuItem(
-                    'Cta',
-                    'fa-solid fa-graduation-cap',
-                    '
-                                                        <a href="' .
-                        route('cta.index') .
-                        '" class="submenu">View Cta</a>
-                                                        <a href="' .
-                        route('cta.create') .
-                        '" class="submenu">Add Cta</a>
-                                                    ',
-                ) !!}
 
                 {{-- Course Phases --}}
                 {{-- {!! menuItem(
@@ -268,35 +218,7 @@
                                                     ',
                 ) !!} --}}
 
-                {{-- Facilities --}}
-                {!! menuItem(
-                    'Facilities',
-                    'fa-solid fa-building',
-                    '
-                                                        <a href="' .
-                        route('facilities.index') .
-                        '" class="submenu">View Facilities</a>
-                                                        <a href="' .
-                        route('facilities.create') .
-                        '" class="submenu">Add Facility</a>
-                                                    ',
-                ) !!}
-
-                {{-- Career Pilot --}}
-                {!! menuItem(
-                    'Career Pilot',
-                    'fa-solid fa-building',
-                    '
-                                                        <a href="' .
-                        route('career_pilot.index') .
-                        '" class="submenu">View Career Pilot</a>
-                                                        <a href="' .
-                        route('career_pilot.create') .
-                        '" class="submenu">Add Career Pilot </a>
-                                                    ',
-                ) !!}
-
-                {{-- Careers --}}
+                {{-- Careers
                 {!! menuItem(
                     'Careers',
                     'fa-solid fa-briefcase',
@@ -308,35 +230,7 @@
                         route('careers.create') .
                         '" class="submenu">Add Career</a>
                                                     ',
-                ) !!}
-
-                {{-- Gallery --}}
-                {!! menuItem(
-                    'Gallery',
-                    'fa-solid fa-images',
-                    '
-                                                        <a href="' .
-                        route('gallery.index') .
-                        '" class="submenu">View Gallery</a>
-                                                        <a href="' .
-                        route('gallery.create') .
-                        '" class="submenu">Add Image</a>
-                                                    ',
-                ) !!}
-
-                {{-- FAQ --}}
-                {!! menuItem(
-                    'FAQs',
-                    'fa-solid fa-question',
-                    '
-                                                        <a href="' .
-                        route('faq.index') .
-                        '" class="submenu">View FAQs</a>
-                                                        <a href="' .
-                        route('faq.create') .
-                        '" class="submenu">Add FAQ</a>
-                                                    ',
-                ) !!}
+                ) !!} --}}
 
                 {{-- Home Career --}}
                 {!! menuItem(
@@ -352,71 +246,248 @@
                                                     ',
                 ) !!}
 
-                {{-- Vision & Mission --}}
+                {{-- Home Page --}}
                 {!! menuItem(
-                    'Vision & Mission',
-                    'fa-solid fa-building',
+                    'Home Page',
+                    'fa-solid fa-layer-group',
                     '
-                                                        <a href="' .
-                        route('vision_mission.index') .
-                        '" class="submenu">View Vision & Mission </a>
-                                                        <a href="' .
-                        route('vision_mission.create') .
-                        '" class="submenu">Add Vision & Mission </a>
-                                                    ',
-                ) !!}
 
-                {{-- Why Choose --}}
-                {!! menuItem(
-                    'Why Choose',
-                    'fa-solid fa-building',
-                    '
-                                                        <a href="' .
-                        route('why_choose.index') .
-                        '" class="submenu">View Why Choose </a>
-                                                        <a href="' .
-                        route('why_choose.create') .
-                        '" class="submenu">Add Why Choose </a>
-                                                    ',
-                ) !!}
+                        ' . menuItem(
+                            'Hero Banner',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('hero.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Hero Banner</a>
+                            '
+                        ) . '
 
-                {{-- Testimonial --}}
-                {!! menuItem(
-                    'Testimonial',
-                    'fa-solid fa-building',
+                        ' . menuItem(
+                            'About Us',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('about.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View About</a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Courses',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('courses.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Courses</a>
+                                <a href="' . route('courses.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Course</a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Cta',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('cta.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Cta</a>
+                                <a href="' . route('cta.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Cta</a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Facilities',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('facilities.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Facilities</a>
+                                <a href="' . route('facilities.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Facility</a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Career Pilot',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('career_pilot.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Career Pilot</a>
+                                <a href="' . route('career_pilot.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Career Pilot</a>
+                            '
+                        ) . '
+
                     '
-                                                        <a href="' .
-                        route('testimonial.index') .
-                        '" class="submenu">View Testimonial </a>
-                                                        <a href="' .
-                        route('testimonial.create') .
-                        '" class="submenu">Add Testimonial </a>
-                                                    ',
                 ) !!}
 
                 {{-- About Page --}}
                 {!! menuItem(
                     'About Page',
-                    'fa-solid fa-building',
+                    'fa-solid fa-layer-group',
                     '
-                                                        <a href="' .
-                        route('about_page.index') .
-                        '" class="submenu">View About Page </a>',
+
+                        ' . menuItem(
+                            'Hero Section',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('about_page.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View About Hero Page
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Vision & Mission',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('vision_mission.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Vision & Mission
+                                </a>
+                                <a href="' . route('vision_mission.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Vision & Mission
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Why Choose',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('why_choose.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Why Choose</a>
+                                <a href="' . route('why_choose.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Why Choose</a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Testimonial',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('testimonial.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Testimonial</a>
+                                <a href="' . route('testimonial.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Testimonial</a>
+                            '
+                        ) . '
+
+                    '
                 ) !!}
 
-                {{-- Advantage --}}
+                {{-- Advantage Page --}}
                 {!! menuItem(
-                    'Advantage',
-                    'fa-solid fa-building',
+                    'Advantages Page',
+                    'fa-solid fa-layer-group',
                     '
-                                                        <a href="' .
-                        route('advantage.index') .
-                        '" class="submenu">View Advantage </a>
-                                                        <a href="' .
-                        route('advantage.create') .
-                        '" class="submenu">Add Advantage </a>
-                                                    ',
+                        ' . menuItem(
+                            
+                            'Advantage',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('advantage.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Advantage
+                                </a>
+                                <a href="' . route('advantage.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Advantage
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Strength',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('strength.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Strength
+                                </a>
+                                <a href="' . route('strength.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Strength
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Infrastructure',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('infrastructure.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Infrastructure
+                                </a>
+                                <a href="' . route('infrastructure.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Infrastructure
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Record',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('record.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Record
+                                </a>
+                                <a href="' . route('record.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Record
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Excellence',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('excellence.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Excellence
+                                </a>
+                                <a href="' . route('excellence.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Excellence
+                                </a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'Academic Feature',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('academic_feature.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Academic Feature
+                                </a>
+                                <a href="' . route('academic_feature.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Academic Feature
+                                </a>
+                            '
+                        ) . '
+                    '
                 ) !!}
+
+                {{-- Other Pages --}}
+                {!! menuItem(
+                    'Other Pages',
+                    'fa-solid fa-layer-group',
+                    '
+
+                        ' . menuItem(
+                            'Gallery',
+                            'fa-solid fa-images',
+                            '
+                                <a href="' . route('gallery.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Gallery</a>
+                                <a href="' . route('gallery.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Image</a>
+                            '
+                        ) . '
+
+                        ' . menuItem(
+                            'FAQs',
+                            'fa-solid fa-question',
+                            '
+                                <a href="' . route('faq.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View FAQs</a>
+                                <a href="' . route('faq.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add FAQ</a>
+                            '
+                        ) . '
+
+                    '
+                ) !!}
+
             </nav>
         </aside>
 

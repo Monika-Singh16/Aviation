@@ -31,6 +31,12 @@ use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\WhyVaaController;
 
 use App\Http\Controllers\AdvantageController;
+use App\Http\Controllers\InfrastructureController;
+use App\Http\Controllers\StrengthController;
+use App\Http\Controllers\Infrastructure;
+use App\Http\Controllers\RecordController;
+use App\Http\Controllers\ExcellenceController;
+use App\Http\Controllers\AcademicFeatureController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -132,6 +138,21 @@ Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
 
         // Advantages Routes
         Route::resource('advantage', AdvantageController::class);
+
+        // Strengths Routes
+        Route::resource('strength', StrengthController::class);
+
+        // Infrastructure Routes
+        Route::resource('infrastructure', InfrastructureController::class);
+
+        // Record Routes
+        Route::resource('record', RecordController::class);
+
+        // Excellence Routes
+        Route::resource('excellence', ExcellenceController::class);
+
+        // Academic Feature Routes
+        Route::resource('academic_feature', AcademicFeatureController::class);
 
         // Careers Routes
         Route::resource('careers', CareerController::class);
