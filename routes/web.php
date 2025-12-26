@@ -37,6 +37,7 @@ use App\Http\Controllers\Infrastructure;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\ExcellenceController;
 use App\Http\Controllers\AcademicFeatureController;
+use App\Http\Controllers\InfoController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -45,7 +46,10 @@ use App\Http\Controllers\AcademicFeatureController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
 // Route::view('/about', 'pages.about');
-Route::view('/courses', 'pages.course');
+Route::get('/courses/{course_url}', [HomeController::class, 'course_detail']);
+//Route::get('/courses/{id}', [HomeController::class, 'course_about']);
+
+// Route::view('/courses', 'pages.course');
 Route::view('/courses-details', 'pages.course-details');
 Route::view('/admissions', 'pages.admissions');
 Route::view('/facility', 'pages.facility');
@@ -132,6 +136,9 @@ Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
 
         // Selection Processes Routes
         Route::resource('selection_processes', SelectionProcessController::class);
+
+        // Infos Routes
+        Route::resource('infos', InfoController::class);
 
         // Facilities Routes
         Route::resource('facilities', FacilityController::class);

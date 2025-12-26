@@ -6,8 +6,8 @@
 <div class="flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold">Course Eligibilities</h1>
     <a href="{{ route('course_eligibilities.create') }}"
-       class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-lg">
-        + Add Course Eligibility
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+        <i class="fas fa-plus"></i> Add Course Eligibility
     </a>
 </div>
 
@@ -22,56 +22,69 @@
         <tr>
             <th class="border px-4 py-2">ID</th>
             <th class="border px-4 py-2">Course</th>
-            <th class="border px-4 py-2">Heading</th>
-            <th class="border px-4 py-2">Value</th>
+            <th class="border px-4 py-2">Status</th>
             <th class="border px-4 py-2">Actions</th>
         </tr>
     </thead>
+
     <tbody>
         @forelse($courseEligibilities as $courseEligibility)
-        <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2 text-center">{{ $courseEligibility->id }}</td>
-            <td class="border px-4 py-2">{{ $courseEligibility->course->heading }}</td>
-            <td class="border px-4 py-2">{{ $courseEligibility->heading }}</td>
-            <td class="border px-4 py-2">
-                @foreach($courseEligibility->value as $item)
-                    <div><strong>{{ $item['key'] }}</strong>: {{ $item['value'] }}</div>
-                @endforeach
-            </td>
+            <tr class="hover:bg-gray-50 align-top">
+                <td class="border px-4 py-2 text-center">
+                    {{ $courseEligibility->id }}
+                </td>
 
+                <td class="border px-4 py-2 text-center">
+                    {{ $courseEligibility->course->course_name ?? '-' }}
+                </td>
 
-            <td class="border px-4 py-2 flex gap-2 justify-center">
-                <!-- View -->
-                <a href="{{ route('course_eligibilities.show', $courseEligibility->id) }}"
-                   class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
-                   title="View Course Eligibility">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268
-                                 2.943 9.542 7-1.274 4.057-5.065 7-9.542
-                                 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                </a>
+                <!-- Status -->
+                <td class="border px-4 py-2 text-center">
+                    <span class="px-3 py-1 rounded text-white 
+                        {{ $courseEligibility->is_active ? 'bg-green-600' : 'bg-red-500' }}">
+                        {{ $courseEligibility->is_active ? 'Active' : 'Inactive' }}
+                    </span>
+                </td>
 
-                <!-- Edit -->
-                <a href="{{ route('course_eligibilities.edit', $courseEligibility->id) }}"
-                   class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
-                   title="Edit Course Eligibility">
-                    <i class="fas fa-edit"></i>
-                </a>
+                <!-- Actions -->
+                <td class="border px-4 py-2">
+                    <div class="flex gap-2 justify-center">
 
-                <!-- Delete -->
-               <button onclick="openDeleteModal('course_eligibilities', {{ $courseEligibility->id }})" 
-                        class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </td>
-        </tr>
+                        <!-- View -->
+                        <a href="{{ route('course_eligibilities.show', $courseEligibility->id) }}"
+                            class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
+                            title="View">
+                            <i class="fas fa-eye"></i>
+                        </a>
+
+                        <!-- Edit -->
+                        <a href="{{ route('course_eligibilities.edit', $courseEligibility->id) }}"
+                            class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
+                            title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <!-- Delete -->
+                        <form action="{{ route('course_eligibilities.destroy', $courseEligibility->id) }}" 
+                            method="POST" 
+                            onsubmit="return confirm('Are you sure you want to delete this record?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" 
+                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+
+                    </div>
+                </td>
+            </tr>
         @empty
-        <tr>
-            <td colspan="5" class="text-center py-4 text-gray-600">No Course Eligibilities Found</td>
-        </tr>
+            <tr>
+                <td colspan="5" class="text-center py-4 text-gray-600">
+                    No Course Eligibilities Found
+                </td>
+            </tr>
         @endforelse
     </tbody>
 </table>

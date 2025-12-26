@@ -16,8 +16,8 @@ class WhyVaa extends Model
         'is_active',
     ];
 
-   protected $table = 'why_vaa';
-    public $timestmps = true;
+    protected $table = 'why_vaa';
+    public $timestamps = true;
 
 }
 

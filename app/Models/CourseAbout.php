@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CourseAbout extends Model
 {
     protected $fillable = [
+        'course_id',
         'title',
         'description',
         'image_1',
@@ -17,4 +18,10 @@ class CourseAbout extends Model
 
     protected $table = 'course_abouts';
     public $timestamps = true;
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
 }

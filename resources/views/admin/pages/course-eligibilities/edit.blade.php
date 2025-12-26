@@ -4,7 +4,10 @@
 @section('content')
 <h1 class="text-2xl font-bold mb-6">Edit Course Eligibility</h1>
 
-<form action="{{ route('course_eligibilities.update', $courseEligibility->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+<form action="{{ route('course_eligibilities.update', $courseEligibility->id) }}"
+        method="POST"
+        class="space-y-6 bg-white p-6 rounded">
+
     @csrf
     @method('PUT')
 
@@ -14,94 +17,110 @@
         <select name="course_id" class="w-full border px-3 py-2 rounded" required>
             <option value="">Select Course</option>
             @foreach($courses as $course)
-                <option value="{{ $course->id }}" {{ $courseEligibility->course_id == $course->id ? 'selected' : '' }}>{{ $course->heading }}</option>
+                <option value="{{ $course->id }}"
+                    {{ $courseEligibility->course_id == $course->id ? 'selected' : '' }}>
+                    {{ $course->course_name }}
+                </option>
             @endforeach
         </select>
     </div>
 
-    <!-- Heading -->
+    <!-- Status -->
     <div>
-        <label class="block font-semibold mb-1">Heading</label>
-        <input type="text" name="heading" value="{{ $courseEligibility->heading }}" class="w-full border px-3 py-2 rounded" required>
+        <label class="block font-semibold mb-1">Status</label>
+        <select name="is_active" class="w-full border px-3 py-2 rounded">
+            <option value="1" {{ $courseEligibility->is_active ? 'selected' : '' }}>Active</option>
+            <option value="0" {{ !$courseEligibility->is_active ? 'selected' : '' }}>Inactive</option>
+        </select>
     </div>
 
-    <!-- Description -->
+    <!-- Eligibility Criteria -->
     <div>
-        <label class="block font-semibold mb-1">Description</label>
-        <textarea name="description" rows="4" class="w-full border px-3 py-2 rounded">{{ $courseEligibility->description }}</textarea>
-    </div>
+        <label class="block font-semibold mb-2">Eligibility Criteria</label>
 
-    <!-- Value (JSON) -->
-    <div>
-        <label class="block font-semibold mb-1">Value (JSON)</label>
-        <div id="valueContainer">
-            @php
-                $valueArray = $courseEligibility->value ?? [];
-                $index = 0;
-            @endphp
-
-            @foreach($valueArray as $index => $item)
-                <div class="flex items-center gap-2 mb-2">
-                    <button type="button" onclick="addValueField()" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded">
+        <div id="eligibilityContainer">
+            @foreach($courseEligibility->eligibilities as $index => $item)
+                <div class="flex gap-2 mb-2">
+                    <button type="button"
+                            onclick="addRow()"
+                            class="bg-green-500 hover:bg-green-600 text-white px-3 rounded">
                         <i class="fas fa-plus"></i>
                     </button>
-                    <input type="text" name="value[{{ $index }}][key]" value="{{ $item['key'] ?? '' }}" placeholder="Key" class="border px-3 py-2 rounded flex-1" required>
-                    <input type="text" name="value[{{ $index }}][value]" value="{{ $item['value'] ?? '' }}" placeholder="Value" class="border px-3 py-2 rounded flex-1" required>
-                    <button type="button" onclick="removeValueField(this)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded">
+
+                    <input type="text"
+                            name="eligibilities[{{ $index }}][label]"
+                            value="{{ $item['label'] }}"
+                            placeholder="Label (e.g. Education)"
+                            class="border px-3 py-2 rounded w-1/3">
+
+                    <input type="text"
+                            name="eligibilities[{{ $index }}][value]"
+                            value="{{ $item['value'] }}"
+                            placeholder="Value"
+                            class="border px-3 py-2 rounded w-2/3">
+
+                    <button type="button"
+                            onclick="removeRow(this)"
+                            class="bg-red-500 hover:bg-red-600 text-white px-3 rounded">
                         <i class="fas fa-minus"></i>
                     </button>
                 </div>
             @endforeach
-
-            @if(empty($valueArray))
-                <div class="flex items-center gap-2 mb-2">
-                    <button type="button" onclick="addValueField()" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <input type="text" name="value[0][key]" placeholder="Key" class="border px-3 py-2 rounded flex-1" required>
-                    <input type="text" name="value[0][value]" placeholder="Value" class="border px-3 py-2 rounded flex-1" required>
-                    <button type="button" onclick="removeValueField(this)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                </div>
-            @endif
         </div>
+
     </div>
 
-    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">Update</button>
+    <!-- Buttons -->
+    <div class="flex gap-3">
+        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">
+            Update
+        </button>
 
-    <a href="{{ route('course_eligibilities.index') }}"
-   class="mt-6 inline-block bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded">
-    Back
-</a>
+        <a href="{{ route('course_eligibilities.index') }}"
+            class="bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded">
+            Back
+        </a>
+    </div>
+
 </form>
 
 <script>
-    let valueIndex = {{ count($valueArray) }};
+    let index = {{ count($courseEligibility->eligibilities) }};
 
-    function addValueField() {
-        const container = document.getElementById('valueContainer');
-        const newField = document.createElement('div');
-        newField.className = 'flex items-center gap-2 mb-2';
-        newField.innerHTML = `
-            <button type="button" onclick="addValueField()" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded">
+    function addRow() {
+        const container = document.getElementById('eligibilityContainer');
+
+        const div = document.createElement('div');
+        div.className = 'flex gap-2 mb-2';
+        div.innerHTML = `
+            <button type="button"
+                    onclick="addRow(this)"
+                    class="bg-green-500 hover:bg-green-600 text-white px-3 rounded">
                 <i class="fas fa-plus"></i>
             </button>
-            <input type="text" name="value[${valueIndex}][key]" placeholder="Key" class="border px-3 py-2 rounded flex-1" required>
-            <input type="text" name="value[${valueIndex}][value]" placeholder="Value" class="border px-3 py-2 rounded flex-1" required>
-            <button type="button" onclick="removeValueField(this)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded">
+
+            <input type="text"
+                    name="eligibilities[${index}][label]"
+                    placeholder="Label"
+                    class="border px-3 py-2 rounded w-1/3">
+
+            <input type="text"
+                    name="eligibilities[${index}][value]"
+                    placeholder="Value"
+                    class="border px-3 py-2 rounded w-2/3">
+
+            <button type="button"
+                    onclick="removeRow(this)"
+                    class="bg-red-500 hover:bg-red-600 text-white px-3 rounded">
                 <i class="fas fa-minus"></i>
             </button>
         `;
-        container.appendChild(newField);
-        valueIndex++;
+        container.appendChild(div);
+        index++;
     }
 
-    function removeValueField(button) {
-        const container = document.getElementById('valueContainer');
-        if (container.children.length > 1) {
-            button.parentElement.remove();
-        }
+    function removeRow(btn) {
+        btn.parentElement.remove();
     }
 </script>
 @endsection

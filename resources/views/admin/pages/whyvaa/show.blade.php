@@ -7,47 +7,47 @@
     <h1 class="text-3xl font-bold mb-8 text-gray-800 border-b pb-3">Hero Section Details</h1>
 
     <div class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-5">
+                {{-- Main Title --}}
+                <div>
+                    <h2 class="font-bold text-gray-700">Main Title:</h2>
+                    <p class="text-lg text-gray-900">{{ $whyvaa->main_title }}</p>
+                </div>
 
-        {{-- Main Title --}}
-        <div>
-            <h2 class="font-bold text-gray-700">Main Title:</h2>
-            <p class="text-lg text-gray-900">{{ $whyvaa->main_title }}</p>
+                {{-- Main Description --}}
+                <div>
+                    <h2 class="font-bold text-gray-700">Main Description:</h2>
+                    <p class="text-gray-900 leading-relaxed text-justify">{{ $whyvaa->main_desc }}</p>
+                </div>
+
+                {{-- Image Title --}}
+                <div>
+                    <h2 class="font-bold text-gray-700">Image Title:</h2>
+                    <p class="text-lg text-gray-900">{{ $whyvaa->image_title }}</p>
+                </div>
+
+                {{-- Image Sub Title --}}
+                <div>
+                    <h2 class="font-bold text-gray-700">Image Sub Title:</h2>
+                    <p class="text-lg text-gray-900">{{ $whyvaa->image_sub_title }}</p>
+                </div>
+
+                {{-- Image Sub Description --}}
+                <div>
+                    <h2 class="font-bold text-gray-700">Image Sub Description:</h2>
+                    <p class="text-gray-900 text-justify">{{ $whyvaa->image_sub_description }}</p>
+                </div>
+            </div>
+            {{-- Banner Image --}}
+            @if($whyvaa->image)
+            <div>
+                <h2 class="font-bold text-gray-700">Banner Image:</h2>
+                <img src="{{ asset($whyvaa->image) }}"
+                    class="w-60 h-60 object-cover rounded-xl shadow-md mt-3 border border-gray-200">
+            </div>
+            @endif
         </div>
-
-        {{-- Main Description --}}
-        <div>
-            <h2 class="font-bold text-gray-700">Main Description:</h2>
-            <p class="text-gray-900 leading-relaxed">{{ $whyvaa->main_desc }}</p>
-        </div>
-
-        {{-- Banner Image --}}
-        @if($whyvaa->image)
-        <div>
-            <h2 class="font-bold text-gray-700">Banner Image:</h2>
-            <img src="{{ asset($whyvaa->image) }}"
-                class="w-60 h-60 object-cover rounded-xl shadow-md mt-3 border border-gray-200">
-        </div>
-        @endif
-
-
-        {{-- Image Title --}}
-        <div>
-            <h2 class="font-bold text-gray-700">Image Title:</h2>
-            <p class="text-lg text-gray-900">{{ $whyvaa->image_title }}</p>
-        </div>
-
-        {{-- Image Sub Title --}}
-        <div>
-            <h2 class="font-bold text-gray-700">Image Sub Title:</h2>
-            <p class="text-lg text-gray-900">{{ $whyvaa->image_sub_title }}</p>
-        </div>
-
-        {{-- Image Sub Description --}}
-        <div>
-            <h2 class="font-bold text-gray-700">Image Sub Description:</h2>
-            <p class="text-gray-900">{{ $whyvaa->image_sub_description }}</p>
-        </div>
-
         {{-- Status --}}
         <div>
             <h2 class="font-bold text-gray-700">Status:</h2>

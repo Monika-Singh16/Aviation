@@ -22,6 +22,7 @@
     <thead class="bg-gray-100">
         <tr>
             <th class="border px-4 py-2">ID</th>
+            <th class="border px-4 py-2">Course Name</th>
             <th class="border px-4 py-2">Title</th>
             <th class="border px-4 py-2">Image 1</th>
             <th class="border px-4 py-2">Status</th>
@@ -34,6 +35,8 @@
         <tr class="hover:bg-gray-50">
 
             <td class="border px-4 py-2 text-center">{{ $course_about->id }}</td>
+
+            <td class="border px-4 py-2 text-center">{{ $course_about->course->course_name }}</td>
 
             <td class="border px-4 py-2">{{ $course_about->title }}</td>
 

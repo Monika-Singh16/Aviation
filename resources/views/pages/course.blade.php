@@ -1,6 +1,6 @@
 @extends('layout.master')
 <style>
-/* ================================
+    /* ================================
    Training Section Styles
    ================================ */
     .training-section {
@@ -842,173 +842,173 @@
         min-height: 90vh;
     }
 
-.hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: #dcbb87;
-  line-height: 1.2;
-}
+    .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #dcbb87;
+    line-height: 1.2;
+    }
 
-.hero-description {
-  font-size: 1.1rem;
-  color: #6c757d;
-  line-height: 1.8;
-}
+    .hero-description {
+    font-size: 1.1rem;
+    color: #6c757d;
+    line-height: 1.8;
+    }
 
-/* Right-side elements */
-.private-jet-box {
-  position: absolute;
-  top: 100px;
-  right: -90px;
-  width: 600px;
-  height: 400px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideDown 1.5s ease-out forwards;
-  opacity: 0;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.private-jet-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.circular-image {
-   position: absolute;
-    bottom: -207px;
-    right: 339px;
-    max-width: 100%;
-    height: auto;
-    border-radius: 135px;
-    overflow: hidden;
-    border: 5px solid #fff;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    animation: slideRight 1.5s 
-    ease-out 0.5s forwards;
-    opacity: 0;
-    z-index: 5;
-}
-
-@keyframes slideRight {
-  from {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.circular-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.airplane {
+    /* Right-side elements */
+    .private-jet-box {
     position: absolute;
-    top: 331px;
-    right: -315px;
-    width: 700px;
+    top: 100px;
+    right: -90px;
+    width: 600px;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideDown 1.5s ease-out forwards;
     opacity: 0;
-    animation: flyIn 2s 
-    ease-out 1s forwards;
-    z-index: 999;
-}
+    }
 
-@keyframes flyIn {
-  from {
-    opacity: 0;
-    transform: translateX(300px) translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-  }
-}
+    @keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
 
-.airplane img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
-}
+    .private-jet-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
 
-.cloud {
-  position: absolute;
-  top: 50px;
-  left: 100px;
-  width: 200px;
-  opacity: 0.3;
-}
+    .circular-image {
+    position: absolute;
+        bottom: -207px;
+        right: 339px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 135px;
+        overflow: hidden;
+        border: 5px solid #fff;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        animation: slideRight 1.5s 
+        ease-out 0.5s forwards;
+        opacity: 0;
+        z-index: 5;
+    }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  .hero-title {
-    font-size: 3rem;
-  }
-  .private-jet-box {
-    width: 500px;
-    height: 350px;
-    right: 50px;
-  }
-  .circular-image {
-    width: 280px;
-    height: 280px;
-    right: 400px;
-  }
-  .airplane {
-    width: 550px;
-  }
-}
+    @keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
 
-@media (max-width: 992px) {
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  .private-jet-box {
-    width: 400px;
-    height: 300px;
-    right: 30px;
+    .circular-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .airplane {
+        position: absolute;
+        top: 331px;
+        right: -315px;
+        width: 700px;
+        opacity: 0;
+        animation: flyIn 2s 
+        ease-out 1s forwards;
+        z-index: 999;
+    }
+
+    @keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateX(300px) translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+    }
+
+    .airplane img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+    }
+
+    .cloud {
+    position: absolute;
     top: 50px;
-  }
-  .circular-image {
-    width: 220px;
-    height: 220px;
-    right: 300px;
-    bottom: 50px;
-  }
-  .airplane {
-    width: 450px;
-  }
-}
+    left: 100px;
+    width: 200px;
+    opacity: 0.3;
+    }
 
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 40px 0;
-  }
-  .hero-title {
-    font-size: 2rem;
-  }
-  .private-jet-box,
-  .circular-image,
-  .airplane {
-    display: none;
-  }
-}
+    /* Responsive */
+    @media (max-width: 1200px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    .private-jet-box {
+        width: 500px;
+        height: 350px;
+        right: 50px;
+    }
+    .circular-image {
+        width: 280px;
+        height: 280px;
+        right: 400px;
+    }
+    .airplane {
+        width: 550px;
+    }
+    }
+
+    @media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .private-jet-box {
+        width: 400px;
+        height: 300px;
+        right: 30px;
+        top: 50px;
+    }
+    .circular-image {
+        width: 220px;
+        height: 220px;
+        right: 300px;
+        bottom: 50px;
+    }
+    .airplane {
+        width: 450px;
+    }
+    }
+
+    @media (max-width: 768px) {
+    .hero-section {
+        padding: 40px 0;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .private-jet-box,
+    .circular-image,
+    .airplane {
+        display: none;
+    }
+    }
 
 </style>
 
@@ -1044,173 +1044,149 @@
     <section class="hero-section py-5 position-relative overflow-hidden">
         <div class="container position-relative">
             <div class="row align-items-center">
-            <!-- Left Content -->
-            <div class="col-lg-6 col-md-12 p-5">
-                <h1 class="hero-title mb-4">
-                Program Outline
-                </h1>
-                <p class="hero-description mb-4">
-                Vihanga Aviation Training takes great pride in its esteemed partnership with IndiGo, India’s leading airline, to offer the prestigious IndiGo Cadet Pilot Program. <br>
-                This comprehensive training program covers every phase — from Ground School to Type Rating. Upon successful completion, cadets graduate fully prepared and qualified to begin their careers as Junior First Officers with IndiGo.
-                </p>
-                <a href="http://127.0.0.1:8000/courses-details" class="btn--base">Learn More US <i class="icon-Group-2361 ml-2"></i></a>
-            </div>
+                <!-- Left Content -->
+                <div class="col-lg-6 col-md-12 p-5">
+                    <h1 class="hero-title mb-4">
+                        {{ $course_about->title ?? '' }}
+                    </h1>
+                    <p class="hero-description mb-4">
+                        {{ $course_about->description ?? '' }}
+                    </p>
+                    <a href="{{ url('/courses-details') }}" class="btn--base">
+                        Learn More US <i class="icon-Group-2361 ml-2"></i>
+                    </a>
+                </div>
             </div>
 
-            <!-- ✅ Right Image Group (now wrapped inside container) -->
+            <!-- Right Image Group -->
+            @if(!empty($course_about) && !empty($course_about->image_1))
             <div class="private-jet-box">
-            <img src="{{asset('assets/images/aviation/course_page/course/intro2.jpg')}}" alt="Private Jet Interior" />
+                <img src="{{ asset($course_about->image_1) }}" alt="Private Jet Interior" />
             </div>
+            @endif
 
+            @if(!empty($course_about) && !empty($course_about->image_2))
             <div class="circular-image">
-            <img src="{{asset('assets/images/aviation/course_page/course/intro1.jpg')}}" alt="Woman in Private Jet" />
+                <img src="{{ asset($course_about->image_2) }}" alt="Woman in Private Jet" />
             </div>
+            @endif
 
+            @if(!empty($course_about) && !empty($course_about->image_3))
             <div class="airplane">
-            <img src="{{asset('assets/images/aviation/course_page/course/intro3.png')}}" alt="Airplane" />
+                <img src="{{ asset($course_about->image_3) }}" alt="Airplane" />
             </div>
+            @endif
 
             <div class="cloud">
-            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="50" rx="50" ry="30" fill="#ffffff" />
-                <ellipse cx="80" cy="40" rx="40" ry="25" fill="#ffffff" />
-                <ellipse cx="110" cy="50" rx="45" ry="28" fill="#ffffff" />
-            </svg>
+                <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="50" cy="50" rx="50" ry="30" fill="#ffffff" />
+                    <ellipse cx="80" cy="40" rx="40" ry="25" fill="#ffffff" />
+                    <ellipse cx="110" cy="50" rx="45" ry="28" fill="#ffffff" />
+                </svg>
             </div>
         </div>
     </section>
-
-
 
     <!-- Training Modules Section -->
     <section class="training-section">
         <div class="container">
-            <div class="section-header">
-            <span class="section-tag">Our Programs</span>
-            <h2 class="section-title">Professional <span class="highlight">Training Modules</span></h2>
-            <p class="section-description">
-                Comprehensive aviation training programs designed to transform aspiring pilots into industry-ready professionals through world-class instruction and cutting-edge facilities.
-            </p>
-            <div class="section-divider"></div>
-            </div>
 
-            <!-- 01 - Left side -->
-            <div class="training-module">
-            <div class="module-inner">
-                <div class="module-number-section">
-                <div class="module-number">01</div>
+            {{-- Section Header (use first phase data) --}}
+            @if($course_phases->count())
+                <div class="section-header">
+                    <span class="section-tag">Our Programs</span>
+                    <h2 class="section-title">
+                        {{ $course_phases->first()->heading }}
+                    </h2>
+                    <p class="section-description">
+                        {{ $course_phases->first()->description }}
+                    </p>
+                    <div class="section-divider"></div>
                 </div>
-                <div class="module-content">
-                <div class="module-icon"><i class="fas fa-book-open"></i></div>
-                <h3 class="module-title">Ground School <span class="highlight">Training</span></h3>
-                <p class="module-description">
-                    Master the theoretical foundations of aviation through comprehensive classroom instruction covering aerodynamics, meteorology, navigation, and aviation regulations.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-box"><i class="fas fa-atom"></i><span>Aviation Theory & Physics</span></div>
-                    <div class="feature-box"><i class="fas fa-cloud-sun"></i><span>Meteorology & Weather</span></div>
-                    <div class="feature-box"><i class="fas fa-gavel"></i><span>Air Law & Regulations</span></div>
-                    <div class="feature-box"><i class="fas fa-compass"></i><span>Navigation & Instruments</span></div>
-                </div>
-                <div class="module-stats">
-                    <div class="stat-box">
-                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                    <div class="stat-info">
-                        <span class="stat-number">200+</span>
-                        <span class="stat-label">Training Hours</span>
-                    </div>
-                    </div>
-                    <div class="stat-box">
-                    <div class="stat-icon"><i class="fas fa-book"></i></div>
-                    <div class="stat-info">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Modules</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
+            @endif
 
-            <!-- 02 - Right side -->
-            <div class="training-module">
-            <div class="module-inner">
-                <div class="module-number-section">
-                <div class="module-number">02</div>
-                </div>
-                <div class="module-content">
-                <div class="module-icon"><i class="fas fa-plane"></i></div>
-                <h3 class="module-title">Flight <span class="highlight">Training</span></h3>
-                <p class="module-description">
-                    Gain hands-on flying experience with certified instructors, developing essential piloting skills from basic maneuvers to advanced flight operations.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-box"><i class="fas fa-plane-departure"></i><span>Basic Flight Maneuvers</span></div>
-                    <div class="feature-box"><i class="fas fa-exclamation-triangle"></i><span>Emergency Procedures</span></div>
-                    <div class="feature-box"><i class="fas fa-route"></i><span>Cross-Country Navigation</span></div>
-                    <div class="feature-box"><i class="fas fa-tachometer-alt"></i><span>Instrument Flight Rules</span></div>
-                </div>
-                <div class="module-stats">
-                    <div class="stat-box">
-                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                        <div class="stat-info">
-                            <span class="stat-number">150+</span>
-                            <span class="stat-label">Training Hours</span>
+            {{-- Course Phases --}}
+            @foreach($course_phases as $index => $phase)
+                <div class="training-module {{ $index % 2 == 1 ? 'reverse' : '' }}">
+                    <div class="module-inner">
+
+                        {{-- Module Number --}}
+                        <div class="module-number-section">
+                            <div class="module-number">
+                                {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                            </div>
+                        </div>
+
+                        {{-- Module Content --}}
+                        <div class="module-content">
+
+                            {{-- Icon --}}
+                            <div class="module-icon">
+                                <i class="fas {{ $phase->icon }}"></i>
+                            </div>
+
+                            {{-- Title --}}
+                            <h3 class="module-title">
+                                {{ $phase->title }}
+                            </h3>
+
+                            {{-- Description --}}
+                            <p class="module-description">
+                                {{ $phase->desc }}
+                            </p>
+
+                            {{-- FEATURES --}}
+                            @if(!empty($phase->features))
+                                <div class="feature-grid">
+                                    @foreach($phase->features as $feature)
+                                        <div class="feature-box">
+                                            <i class="fas fa-atom"></i>
+                                            <span>{{ $feature['text'] ?? '' }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            {{-- STATS --}}
+                            @if(!empty($phase->stats))
+                                <div class="module-stats">
+                                    {{-- @foreach($phase->stats as $stat)
+                                        <div class="stat-box">
+                                            <div class="stat-icon">
+                                                <i class="fas {{ $phase->stat_icon }}"></i>
+                                            </div>
+                                            <div class="stat-info">
+                                                <span class="stat-number">
+                                                    {{ $stat['number'] ?? '' }}
+                                                </span>
+                                                <span class="stat-label">
+                                                    {{ $stat['label'] ?? '' }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    @endforeach --}}
+                                    @foreach($phase->stats as $stat)
+                                        <div class="stat-box">
+                                            <div class="stat-icon">
+                                                <i class="fas {{ $stat['icon'] }}"></i>
+                                            </div>
+                                            <div class="stat-info">
+                                                <span class="stat-number">{{ $stat['number'] }}</span>
+                                                <span class="stat-label">{{ $stat['label'] }}</span>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
                         </div>
                     </div>
-                    <div class="stat-box">
-                    <div class="stat-icon"><i class="fas fa-plane"></i></div>
-                    <div class="stat-info">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Flights</span>
-                    </div>
-                    </div>
                 </div>
-                </div>
-            </div>
-            </div>
+            @endforeach
 
-            <!-- 03 - Left side -->
-            <div class="training-module">
-            <div class="module-inner">
-                <div class="module-number-section">
-                <div class="module-number">03</div>
-                </div>
-                <div class="module-content">
-                <div class="module-icon"><i class="fas fa-certificate"></i></div>
-                <h3 class="module-title">Type <span class="highlight">Rating</span></h3>
-                <p class="module-description">
-                    Specialize in specific aircraft types with advanced training on complex systems, procedures, and operational techniques for commercial operations.
-                </p>
-                <div class="feature-grid">
-                    <div class="feature-box"><i class="fas fa-cogs"></i><span>Aircraft Systems Mastery</span></div>
-                    <div class="feature-box"><i class="fas fa-desktop"></i><span>Simulator Training</span></div>
-                    <div class="feature-box"><i class="fas fa-users"></i><span>Line-Oriented Flight Training</span></div>
-                    <div class="feature-box"><i class="fas fa-user-friends"></i><span>Crew Resource Management</span></div>
-                </div>
-                <div class="module-stats">
-                    <div class="stat-box">
-                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                    <div class="stat-info">
-                        <span class="stat-number">100+</span>
-                        <span class="stat-label">Training Hours</span>
-                    </div>
-                    </div>
-                    <div class="stat-box">
-                    <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                    <div class="stat-info">
-                        <span class="stat-number">25+</span>
-                        <span class="stat-label">Sessions</span>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
         </div>
     </section>
 
-     
     <!-- Admission Section -->
     <section class="admission-section py-5">
         <div class="container">
@@ -1231,83 +1207,74 @@
                             <i class="fas fa-user-graduate"></i>
                             <span>Eligibility Criteria</span>
                         </div>
+
                         <ul class="eligibility-list">
-                            <li>
-                                <span><strong>Education:</strong> 10+2 with minimum 51% / Grade Point 6 / Grade C1 (CBSE) individually in Physics, Mathematics & English.</span>
-                            </li>
-                            <li>
-                                <span>Foreign candidates must obtain equivalency from <strong>AIU (Association of Indian Universities)</strong>.</span>
-                            </li>
-                            <li>
-                                <span>NIOS mark sheets accepted with minimum 51% in Physics, Mathematics & English individually.</span>
-                            </li>
-                            <li>
-                                <span><strong>Age:</strong> Between 18 and 35 years.</span>
-                            </li>
-                            <li>
-                                <span><strong>Medical:</strong> Valid Indian DGCA Class I Medical Certificate.</span>
-                            </li>
-                            <li>
-                                <span><strong>Passport:</strong> Valid Indian Passport.</span>
-                            </li>
-                            <li>
-                                <span><strong>Police Verification:</strong> Possess a Criminal Record Check (CRC) Basic Disclosure Certificate.</span>
-                            </li>
-                            <li>
-                                <span><strong>English Fluency:</strong> Both written and verbal.</span>
-                            </li>
-                            <li>
-                                <span><strong>BMI Certificate:</strong> BMI 18–25 from NABL-accredited lab/hospital.</span>
-                            </li>
-                            <li>
-                                <span><strong>Tattoos:</strong> Candidates with visible tattoos will not be considered.</span>
-                            </li>
+
+                            @if($course_eligibility && is_array($course_eligibility->eligibilities))
+                                @foreach($course_eligibility->eligibilities as $item)
+                                    <li>
+                                        <span>
+                                            <strong>{{ $item['label'] ?? '' }}:</strong>
+                                            {{ $item['value'] ?? '' }}
+                                        </span>
+                                    </li>
+                                @endforeach
+                            @else
+                                <li>
+                                    <span>No eligibility criteria available.</span>
+                                </li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
 
+
                 <!-- Selection Process -->
-                <div class="col-lg-6 mb-4">
-                    <div class="info-card">
-                        <div class="card-header-custom">
-                            <i class="fas fa-tasks"></i>
-                            <span>Assessment & Selection</span>
-                        </div>
-                        <p class="text-light mb-4">After meeting the eligibility criteria, candidates will progress through the following stages:</p>
-                        
-                        <div class="stage-item">
-                            <strong>Stage 1: ADAPT Assessment</strong>
-                            <p>Online psychometric & aptitude test for aspiring pilots at our ADAPT centre.</p>
-                            <div class="mb-3">
-                                <span class="fee-tag">Fee: ₹30,000.00</span>
+                @if($course_selection_process)
+                    <div class="col-lg-6 mb-4">
+                        <div class="info-card">
+                            <div class="card-header-custom">
+                                <i class="fas fa-tasks"></i>
+                                <span>Assessment & Selection</span>
                             </div>
-                            <a href="#" class="btn-custom">Visit ADAPT Website</a>
-                        </div>
 
-                        <div class="stage-item">
-                            <strong>Stage 2: Group Task Assessment</strong>
-                            <p>Candidates showcase collaborative and problem-solving skills before IndiGo panellists.</p>
-                        </div>
+                            <p class="text-light mb-4">
+                                {{ $course_selection_process->heading }}
+                            </p>
 
-                        <div class="stage-item">
-                            <strong>Stage 3: Personal Interview</strong>
-                            <p>Final interview with IndiGo panellists to discuss aspirations and experiences.</p>
-                        </div>
+                            @foreach($course_selection_process->criteria as $index => $stage)
+                                <div class="stage-item">
+                                    <strong>Stage {{ $index + 1 }}: {{ $stage['title'] }}</strong>
 
-                        <div class="loi-notice">
-                            <i class="fas fa-certificate"></i>
-                            <strong>Upon successful completion, candidates will sign the Letter of Intent (LoI) with IndiGo.</strong>
+                                    <p>{{ $stage['description'] }}</p>
+
+                                    @if(!empty($stage['extra']))
+                                        <div class="mb-3">
+                                            <span class="fee-tag">{{ $stage['extra'] }}</span>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+
+                            @if($course_selection_process->note)
+                                <div class="loi-notice">
+                                    <i class="fas fa-certificate"></i>
+                                    <strong>{{ $course_selection_process->note }}</strong>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
+                @endif
+
             </div>
 
             <!-- Batch & Fee Information -->
-            <div class="row mt-5">
+            {{-- <div class="row mt-5">
                 <div class="col-md-6 mb-4">
                     <div class="highlight-card">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h4 class="text-uppercase">Batch Information</h4>
+                        <i class="{{ $infos->icon}}"></i>
+                        <h4 class="text-uppercase">{{ $infos->title}}</h4>
                         <p>Contact us to learn more about our upcoming batches and registration process.</p>
                         <a href="{{ url('/contact-us') }}" class="btn-dark-custom">Contact Us</a>
 
@@ -1322,7 +1289,32 @@
                         <a href="#" class="btn-dark-custom">Know More</a>
                     </div>
                 </div>
+            </div> --}}
+            <div class="row mt-5">
+                @forelse($infos as $info)
+                    <div class="col-md-6 mb-4">
+                        <div class="highlight-card">
+                            <i class="{{ $info->icon }}"></i>
+
+                            <h4 class="text-uppercase">
+                                {{ $info->title }}
+                            </h4>
+
+                            <p>
+                                {{ $info->description }}
+                            </p>
+
+                            {{-- Optional CTA --}}
+                            {{-- <a href="{{ url('/contact-us') }}" class="btn-dark-custom">Contact Us</a> --}}
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center text-muted">
+                        No information available
+                    </div>
+                @endforelse
             </div>
+
         </div>
     </section>
 

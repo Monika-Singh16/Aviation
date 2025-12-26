@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('course_eligibilities', function (Blueprint $table) {
             $table->id();
-            $table->string('heading');
-            $table->text('description')->nullable();
-            $table->json('value');
+            // Foreign key to the courses table
+            $table->foreignId('course_id')
+                ->constrained()
+                ->onDelete('cascade');
+            $table->json('eligibilities')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

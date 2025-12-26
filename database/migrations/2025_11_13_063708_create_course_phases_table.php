@@ -13,11 +13,25 @@ return new class extends Migration
     {
         Schema::create('course_phases', function (Blueprint $table) {
             $table->id();
-            $table->string('heading');
-            $table->text('description');
-            $table->json('text')->nullable(); 
+            // course relation
+            $table->foreignId('course_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->string('heading')->nullable();
+            $table->text('description')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('title')->nullable();
+            $table->text('desc')->nullable(); 
             
+            // JSON fields
+            $table->json('features')->nullable();
+            $table->json('stats')->nullable();
+            
+            $table->string('stat_icon')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
+            
         });
     }
 

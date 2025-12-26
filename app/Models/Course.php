@@ -22,7 +22,7 @@ class Course extends Model
         return $this->hasMany(CoursePhase::class);
     }
 
-    public function courseEligibilities()
+    public function courseEligibility()
     {
         return $this->hasMany(CourseEligibility::class);
     }
@@ -30,5 +30,15 @@ class Course extends Model
     public function selectionProcesses()
     {
         return $this->hasMany(SelectionProcess::class);
+    }
+
+    public function courseAbout()
+    {
+        return $this->hasMany(CourseAbout::class);
+    }
+
+    public function infos()
+    {
+        return $this->hasMany(Info::class);
     }
 }

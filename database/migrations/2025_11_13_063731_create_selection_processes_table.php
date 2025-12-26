@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('selection_processes', function (Blueprint $table) {
             $table->id();
-            $table->string('heading');
-            $table->text('description')->nullable();
-            $table->string('label');
-            $table->json('value');
+            // Foreign key to the courses table
+            $table->foreignId('course_id')
+                ->constrained()
+                ->onDelete('cascade');
+            
+            $table->string('heading')->nullable();
+            $table->json('criteria')->nullable();
+            $table->string('note')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

@@ -22,6 +22,12 @@ use App\Models\Strength;
 use App\Models\Infrastructure;
 use App\Models\Record;
 use App\Models\Excellence;
+use App\Models\WhyVaa;
+use App\Models\CourseAbout; 
+use App\Models\CoursePhase;  
+use App\Models\CourseEligibility;
+use App\Models\Info;
+use App\Models\SelectionProcess;
 
 class HomeController extends Controller
 {
@@ -39,7 +45,8 @@ class HomeController extends Controller
         $faq = FAQ::first();
         $faqs = FAQ::whereNull(['heading', 'description'])->get();
         //return $faqs;
-        return view('pages.index', compact('hero', 'about', 'course_detail', 'facility', 'cta', 'career_pilot','career_pilots', 'galleries', 'faq', 'faqs'));
+        $why_vaa = WhyVaa::get();
+        return view('pages.index', compact('hero', 'about', 'course_detail', 'facility', 'cta', 'career_pilot','career_pilots', 'galleries', 'faq', 'faqs', 'why_vaa'));
     }
 
     public function gallery (){
@@ -74,6 +81,22 @@ class HomeController extends Controller
         $academic_features = AcademicFeature::get();
         return view('pages.the-vaa-advantages', compact('advantage','strength', 'strengths','infrastructure','infrastructures', 
         'record', 'records','excellence', 'excellences','academic_feature', 'academic_features'));
+    }
+
+    public function course_detail ($course_url){
+        $course= Course::where('course_url', $course_url)->first();
+        $course_about = CourseAbout::where('course_id', $course->id)->first();
+        //return $course_about;
+        $course_phases = CoursePhase::where('course_id', $course->id)->get();
+        // return $course_phases;
+        $course_eligibility = CourseEligibility::where('course_id', $course->id)->first();
+        // return $course_eligibility;
+        $course_selection_process = SelectionProcess::where('course_id', $course->id)->first();
+        // return $course_selection_process;
+        $infos = Info::where('course_id', $course->id)->get();
+        // return $infos;
+        return view('pages.course', compact('course','course_about' ,'course_phases', 
+            'course_eligibility', 'course_selection_process', 'infos'));
     }
     
 }

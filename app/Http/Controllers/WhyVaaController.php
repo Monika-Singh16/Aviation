@@ -17,20 +17,23 @@ class WhyVaaController extends Controller
     {
         return view('admin.pages.whyvaa.create');
     }
-
+    
     public function store(Request $request)
     {
-        $request->validate([
-            'main_title'             => 'required|string|max:255',
-            'main_desc'              => 'required|string',
-            'image'                  => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+       $request->validate([
+            'main_title'             => 'nullable|string|max:255',
+            'main_desc'              => 'nullable|string',
+            'image'                  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'image_title'            => 'required|string|max:255',
             'image_sub_title'        => 'required|string|max:255',
             'image_sub_description'  => 'required|string',
         ]);
 
         $path = 'admin-assets/images/home-page/whyvaa/';
-        $fileName = $this->uploadImage($request->file('image'), $path);
+        $fileName = null;
+        if ($request->hasFile('image')) {
+            $fileName = $this->uploadImage($request->file('image'), $path);
+        }
 
         WhyVaa::create([
             'main_title'            => $request->main_title,
@@ -39,11 +42,13 @@ class WhyVaaController extends Controller
             'image_title'           => $request->image_title,
             'image_sub_title'       => $request->image_sub_title,
             'image_sub_description' => $request->image_sub_description,
-             'is_active'            => $request->has('is_active'),
-        ]);
+            'is_active'             => $request->has('is_active'),
+        ]); 
+
+        //return $data;
 
         return redirect()->route('whyvaa.index')
-                         ->with('success', 'Section created successfully.');
+                        ->with('success', 'Section created successfully.');
     }
 
     public function show($id)
@@ -63,9 +68,9 @@ class WhyVaaController extends Controller
         $whyvaa = WhyVaa::findOrFail($id);
 
         $request->validate([
-            'main_title'             => 'required|string|max:255',
-            'main_desc'              => 'required|string',
-            'image'                  => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'main_title'             => 'nullable|string|max:255',
+            'main_desc'              => 'nullable|string',
+            'image'                  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'image_title'            => 'required|string|max:255',
             'image_sub_title'        => 'required|string|max:255',
             'image_sub_description'  => 'required|string',
@@ -86,7 +91,7 @@ class WhyVaaController extends Controller
             'image_title'           => $request->image_title,
             'image_sub_title'       => $request->image_sub_title,
             'image_sub_description' => $request->image_sub_description,
-            'is_active'        => $request->is_active,
+            'is_active'             => $request->is_active,
         ]);
 
         return redirect()->route('whyvaa.index')

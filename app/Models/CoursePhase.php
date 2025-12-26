@@ -10,7 +10,18 @@ class CoursePhase extends Model
         'course_id',
         'heading',
         'description',
-        'image'
+        'icon',
+        'title',
+        'desc',	
+        'features',
+        'stats',	
+        'stat_icon',	
+        'is_active',
+    ];
+
+    protected $casts = [
+        'features' => 'array',
+        'stats' => 'array',
     ];
 
     protected $table = "course_phases";

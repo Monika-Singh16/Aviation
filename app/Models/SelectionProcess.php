@@ -9,12 +9,13 @@ class SelectionProcess extends Model
     protected $fillable = [
         'course_id',
         'heading',
-        'description',
-        'value'
+        'criteria',
+        'note',
+        'is_active',
     ];
 
     protected $casts=[
-        'value' => 'array',
+        'criteria' => 'array',
     ];
     
     protected $table = "selection_processes";

@@ -99,7 +99,7 @@
                                         <a href="#0">Courses</a>
                                             <ul class="sub-menu">
                                                 @foreach ($courses as $course)
-                                                    <li><a href="{{ url('/courses') }}">{{ $course->course_name }}</a></li>
+                                                    <li><a href="{{ url('courses/' .$course->course_url) }}">{{ $course->course_name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>

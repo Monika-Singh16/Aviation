@@ -152,15 +152,6 @@
                                     ',
                 ) !!} --}}
 
-               {{-- Why Vaa Menu --}}
-               
-                {!! menuItem(
-                    'Why Vaa',
-                    'fa-solid fa-circle-info',
-                    '
-                        <a href="' . route('whyvaa.index') . '" class="submenu">View Why Vaa</a>
-                    '
-                ) !!}
 
                 {{-- Highlights --}}
                 {{-- {!! menuItem(
@@ -270,6 +261,18 @@
                             '
                         ) . '
 
+                        {{-- Why Vaa Menu --}}
+                        ' . menuItem(
+                            'Why Vaa',
+                            'fa-solid fa-asterisk',
+                            '
+                                <a href="' . route('whyvaa.index') . '" class="submenu">
+                                    <i class="fa-solid fa-eye" style="margin: 10px"></i> View Why Vaa</a>
+                                <a href="' . route('whyvaa.create') . '" class="submenu">
+                                    <i class="fa-solid fa-plus" style="margin: 10px"></i> Add Why Vaa</a>
+                            '
+                        ) . '
+                        
                         ' . menuItem(
                             'Courses',
                             'fa-solid fa-asterisk',

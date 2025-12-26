@@ -1438,41 +1438,32 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12 col-md-12 mb-4 mb-md-0">
                         <div class="services-subtitle">Why VAA?</div>
-                        <h2 class="services-title">The Preferred Choice for Aviation Training</h2>
+                        <h2 class="services-title">{{ $why_vaa->first()->main_title ?? '' }}</h2>
                         <p class="services-description">
-                            Vihanga Aviation Academy (VAA) offers world-class training with an advanced learning
-                            environment,
-                            modern aircraft, and expert instructors dedicated to helping aspiring pilots achieve their
-                            aviation goals.
+                            {{ $why_vaa->first()->main_desc ?? '' }}
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="flex-banner-section">
+        {{-- <section class="flex-banner-section">
             <div class="wdt-flex-banner-options">
                 <!-- Option 1 -->
                 <div class="wdt-flex-banner-option"
-                    style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery2.jpg') }}'); ">
+                    style="background-image: url('{{ asset( $why_vaa->image ) }}'); ">
                     <div class="wdt-flex-banner-label">
                         <div class="wdt-flex-banner-info">
-                            <div class="wdt-flex-banner-title">Strategically Located</div>
+                            <div class="wdt-flex-banner-title">{{ $why_vaa->image_title}}</div>
                             <div class="wdt-flex-banner-content">
-                                <h2>Strategically Located</h2>
+                                <h2>{{ $why_vaa->image_sub_title }}</h2>
                                 <p>
-                                    VAA is situated in a location that offers excellent weather conditions, ample flying
-                                    hours,
-                                    and an airspace perfect for continuous training. The academy provides a professional
-                                    flying environment
-                                    that supports efficient learning and growth.
+                                    {{ $why_vaa->image_sub_description }}
                                 </p>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
                 <!-- Option 2 - Active -->
                 <div class="wdt-flex-banner-option active"
                     style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery3.png') }}');">
@@ -1491,7 +1482,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Option 3 -->
                 <div class="wdt-flex-banner-option"
                     style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery2.jpg') }}');">
@@ -1510,7 +1500,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Option 4 -->
                 <div class="wdt-flex-banner-option"
                     style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery3.png') }}');">
@@ -1531,7 +1520,34 @@
                     </div>
                 </div>
             </div>
+        </section> --}}
+        <section class="flex-banner-section">
+            <div class="wdt-flex-banner-options">
+
+                @foreach ($why_vaa as $item)
+                    <div class="wdt-flex-banner-option"
+                        style="background-image: url('{{ asset($item->image) }}');">
+
+                        <div class="wdt-flex-banner-label">
+                            <div class="wdt-flex-banner-info">
+
+                                <div class="wdt-flex-banner-title">
+                                    {{ $item->image_title }}
+                                </div>
+
+                                <div class="wdt-flex-banner-content">
+                                    <h2>{{ $item->image_sub_title }}</h2>
+                                    <p>{{ $item->image_sub_description }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
         </section>
+
 
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
               courses  section
@@ -1575,8 +1591,11 @@
                                                             <a href="{{ url('/courses') }}">
                                                                 {{ $item->course_name }}
                                                             </a>
+                                                            {{-- <a href="{{ url('/courses/'.$item->course_id) }}">
+                                                                {{ $item->course_name }}
+                                                            </a> --}}
                                                         </h3>
-                                                        <span class="time"><i class="las la-clock"></i> 45 Hours</span>
+                                                        <span class="time"><i class="las la-clock"></i>{{ $item->duration }}</span>
                                                     </div>
                                                     <div class="course-content-body">
                                                         <p>{{ $item->description }}</p>

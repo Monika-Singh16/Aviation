@@ -8,13 +8,12 @@ class CourseEligibility extends Model
 {
     protected $fillable = [
         'course_id',
-        'heading',
-        'description',
-        'value'
+        'eligibilities',
+        'is_active',
     ];
 
     protected $casts=[
-        'value' => 'array',
+        'eligibilities' => 'array',
     ];
 
     protected $table = "course_eligibilities";

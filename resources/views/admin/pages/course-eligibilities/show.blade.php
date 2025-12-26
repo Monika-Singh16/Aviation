@@ -4,52 +4,62 @@
 @section('content')
 <h1 class="text-2xl font-bold mb-6">Course Eligibility Details</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start bg-white p-6 ">
+<div class="gap-10 bg-white p-6 rounded">
 
-    <!-- LEFT SIDE (TEXT DETAILS) -->
-    <div class="space-y-5">
+    <!-- LEFT SIDE (DETAILS) -->
+    <div class="space-y-6">
+
+        <!-- Course -->
         <div>
-            <p class="font-bold text-gray-700">Course:</p>
-            <p class="text-gray-800">{{ $courseEligibility->course->heading }}</p>
+            <p class="font-bold text-gray-700">Course</p>
+            <p class="text-gray-800">
+                {{ $courseEligibility->course->course_name ?? '-' }}
+            </p>
         </div>
 
+        <!-- Eligibility Criteria -->
         <div>
-            <p class="font-bold text-gray-700">Heading:</p>
-            <p class="text-gray-800">{{ $courseEligibility->heading }}</p>
-        </div>
+            <p class="font-bold text-gray-700 mb-2">Eligibility Criteria</p>
 
-        <div>
-            <p class="font-bold text-gray-700">Description:</p>
-            <p class="text-gray-800">{{ $courseEligibility->description ?: 'N/A' }}</p>
-        </div>
-
-        <div>
-            <p class="font-bold text-gray-700 mb-1">Eligibility Details:</p>
-
-            @if(!empty($courseEligibility->value) && is_array($courseEligibility->value))
-                <ul class="bg-gray-100 p-3 rounded space-y-1">
-                    @foreach($courseEligibility->value as $item)
+            @if(!empty($courseEligibility->eligibilities))
+                <ul class="bg-gray-100 p-4 rounded space-y-2 list-disc pl-8">
+                    @foreach($courseEligibility->eligibilities as $item)
                         <li class="text-gray-800">
-                            <span class="font-semibold">{{ $item['key'] ?? '—' }}</span>:
-                            {{ $item['value'] ?? '—' }}
+                            @if(!empty($item['label']))
+                                <strong>{{ $item['label'] }}:</strong>
+                            @endif
+                            {{ $item['value'] }}
                         </li>
                     @endforeach
                 </ul>
             @else
-                <p class="text-gray-500">No eligibility details available.</p>
+                <p class="text-gray-500">No eligibility criteria available.</p>
             @endif
+        </div>
+
+        <!-- Status -->
+        <div>
+            <p class="font-bold text-gray-700">Status</p>
+            <span class="px-4 py-1 rounded-lg text-white 
+                {{ $courseEligibility->is_active ? 'bg-green-600' : 'bg-red-600' }}">
+                {{ $courseEligibility->is_active ? 'Active' : 'Inactive' }}
+            </span>
         </div>
 
     </div>
 
-    <!-- RIGHT SIDE (EMPTY FOR NOW) -->
-    <div class="flex justify-center">
-        <p class="text-gray-500">No image for this record</p>
-    </div>
 </div>
 
-<a href="{{ route('course_eligibilities.index') }}"
-   class="mt-6 inline-block bg-gray-700 hover:bg-gray-800 text-white px-5 py-2 rounded-lg shadow-md">
-    Back
-</a>
+<div class="mt-4 flex items-center space-x-4">
+    <a href="{{ route('course_eligibilities.index') }}"
+        class="inline-block bg-gray-700 hover:bg-gray-800 text-white px-5 py-2 rounded-lg">
+        Back
+    </a>
+
+    <a href="{{ route('course_eligibilities.edit', $courseEligibility->id) }}" 
+        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
+        Edit
+    </a>
+
+</div>
 @endsection

@@ -7,6 +7,11 @@
     <h1 class="text-3xl font-bold mb-8 text-gray-800 border-b pb-3">Course About Section Details</h1>
 
     <div class="space-y-6">
+        <!-- Course -->
+        <div>
+            <p class="font-semibold text-gray-600">Course</p>
+            <p class="text-gray-800">{{ $course_about->course->course_name ?? '-' }}</p>
+        </div>
         <!-- Title -->
         <div>
             <h2 class="font-bold text-gray-700">Title:</h2>

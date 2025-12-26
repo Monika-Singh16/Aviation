@@ -22,10 +22,8 @@
         <tr>
             <th class="border px-4 py-2">ID</th>
             <th class="border px-4 py-2">Course Name</th>
-            {{-- <th class="border px-4 py-2">Slug (URL)</th>
-            <th class="border px-4 py-2">Description</th> --}}
             <th class="border px-4 py-2">Image</th>
-            <th class="border px-4 py-2 w-96">Actions</th>
+            <th class="border px-4 py-2">Actions</th>
         </tr>
     </thead>
 
@@ -39,14 +37,8 @@
             <!-- Course Name -->
             <td class="border px-4 py-2">{{ $course->course_name }}</td>
 
-            {{-- <!-- Course URL -->
-            <td class="border px-4 py-2">{{ $course->course_url }}</td>
-
-            <!-- Description -->
-            <td class="border px-4 py-2">{{ Str::limit($course->description, 50) }}</td> --}}
-
             <!-- Image -->
-            {{-- <td class="border px-4 py-2 text-center">
+            <td class="border px-4 py-2 text-center">
                 @if($course->image)
                     <img src="{{ asset($course->image) }}"
                         alt="Course Image"
@@ -54,7 +46,7 @@
                 @else
                     <span class="text-gray-500 text-sm">No image</span>
                 @endif
-            </td> --}}
+            </td>
 
             <!-- Actions -->
             <td class="px-4 py-3 border">
@@ -99,6 +91,13 @@
                         class="bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
                         title="Add Selection Process">
                         <i class="fas fa-clipboard-list"></i>
+                    </a>
+
+                    {{-- Add Infos Data --}}
+                    <a href="{{ route('infos.create', ['course_id' => $course->id]) }}"
+                        class="bg-teal-500 hover:bg-teal-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
+                        title="Add Information">
+                        <i class="fas fa-atom"></i>
                     </a>
 
                     <!-- Delete -->
