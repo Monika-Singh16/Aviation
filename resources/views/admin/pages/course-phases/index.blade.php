@@ -30,7 +30,7 @@
     <tbody>
         @forelse($coursePhases as $coursePhase)
         <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2 text-center">{{ $coursePhase->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2">{{ $coursePhase->course->course_name }}</td>
             <td class="border px-4 py-2">{{ $coursePhase->heading }}</td>
 

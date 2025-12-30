@@ -10,7 +10,7 @@ class TestimonialController extends Controller
     // Show all testimonial sections
     public function index()
     {
-        $testimonials = Testimonial::latest()->get();
+        $testimonials = Testimonial::get();
         return view('admin.pages.testimonial.index', compact('testimonials'));
     }
 

@@ -10,13 +10,13 @@ class SelectionProcessController extends Controller
 {
     public function index()
     {
-        $selectionProcesses = SelectionProcess::latest()->get();
+        $selectionProcesses = SelectionProcess::get();
         return view('admin.pages.selection-processes.index', compact('selectionProcesses'));
     }
 
     public function create(Request $request)
     {
-        $courses = Course::latest()->get();
+        $courses = Course::get();
         $selectedCourseId = $request->query('course_id');
 
         return view(
@@ -56,7 +56,7 @@ class SelectionProcessController extends Controller
     public function edit($id)
     {
         $selectionProcess = SelectionProcess::findOrFail($id);
-        $courses = Course::latest()->get();
+        $courses = Course::get();
 
         return view(
             'admin.pages.selection-processes.edit',

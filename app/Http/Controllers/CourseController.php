@@ -11,7 +11,7 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::latest()->get();
+        $courses = Course::get();
         return view('admin.pages.courses.index', compact('courses'));
     }
 
@@ -106,13 +106,11 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $course = Course::findOrFail($id);
-
         if ($course->image && File::exists(public_path($course->image))) {
             File::delete(public_path($course->image));
         }
-
+        
         $course->delete();
-
         return redirect()->route('courses.index')->with('success', 'Course deleted successfully!');
     }
 }

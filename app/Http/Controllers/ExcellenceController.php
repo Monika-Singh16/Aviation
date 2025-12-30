@@ -10,7 +10,7 @@ class ExcellenceController extends Controller
     // Show all Excellence sections
     public function index()
     {
-        $excellences = Excellence::latest()->get();
+        $excellences = Excellence::get();
         return view('admin.pages.excellence.index', compact('excellences'));
     }
 

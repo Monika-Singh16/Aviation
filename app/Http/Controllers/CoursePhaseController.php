@@ -10,13 +10,13 @@ class CoursePhaseController extends Controller
 {
     public function index()
     {
-        $coursePhases = CoursePhase::latest()->get();
+        $coursePhases = CoursePhase::get();
         return view('admin.pages.course-phases.index', compact('coursePhases'));
     }
 
     public function create()
     {
-        $courses = Course::latest()->get();
+        $courses = Course::get();
         return view('admin.pages.course-phases.create', compact('courses'));
     }
 
@@ -61,7 +61,7 @@ class CoursePhaseController extends Controller
     public function edit($id)
     {
         $coursePhase = CoursePhase::findOrFail($id);
-        $courses = Course::latest()->get();
+        $courses = Course::get();
 
         return view('admin.pages.course-phases.edit', compact('coursePhase', 'courses'));
     }

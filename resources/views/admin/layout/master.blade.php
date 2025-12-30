@@ -209,31 +209,53 @@
                                                     ',
                 ) !!} --}}
 
-                {{-- Careers
+                {{--  States --}}
                 {!! menuItem(
-                    'Careers',
+                    'States',
                     'fa-solid fa-briefcase',
                     '
                                                         <a href="' .
-                        route('careers.index') .
-                        '" class="submenu">View Careers</a>
+                        route('states.index') .
+                        '" class="submenu">View  States</a>
                                                         <a href="' .
-                        route('careers.create') .
-                        '" class="submenu">Add Career</a>
+                        route('states.create') .
+                        '" class="submenu">Add States</a>
                                                     ',
-                ) !!} --}}
+                ) !!}
 
-                {{-- Home Career --}}
+                {{--  Cities --}}
                 {!! menuItem(
-                    'Home Career',
+                    'Cities',
+                    'fa-solid fa-briefcase',
+                    '
+                                                        <a href="' .
+                        route('cities.index') .
+                        '" class="submenu">View Cities</a>
+                                                        <a href="' .
+                        route('cities.create') .
+                        '" class="submenu">Add City</a>
+                                                    ',
+                ) !!}
+
+                {{-- Contact Form Data --}}
+                {!! menuItem(
+                    'Form Data',
                     'fa-solid fa-house-laptop',
                     '
                                                         <a href="' .
-                        route('homecareer.index') .
-                        '" class="submenu">View Home Career</a>
+                        route('contact_forms.index') .
+                        '" class="submenu">View Contact Form Data</a>
+                                                    ',
+                ) !!}
+
+                {{-- Enquiry Data --}}
+                {!! menuItem(
+                    'Enquiry Data',
+                    'fa-solid fa-house-laptop',
+                    '
                                                         <a href="' .
-                        route('homecareer.create') .
-                        '" class="submenu">Add Home Career</a>
+                        route('enquiries.index') .
+                        '" class="submenu">View Enquiry Data</a>
                                                     ',
                 ) !!}
 

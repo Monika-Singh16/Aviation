@@ -13,7 +13,7 @@ class InfoController extends Controller
      */
     public function index()
     {
-        $infos = Info::with('course')->latest()->get();
+        $infos = Info::with('course')->get();
         return view('admin.pages.infos.index', compact('infos'));
     }
 
@@ -22,7 +22,7 @@ class InfoController extends Controller
      */
     public function create(Request $request)
     {
-        $courses = Course::latest()->get();
+        $courses = Course::get();
         $selectedCourseId = $request->query('course_id');
 
         return view('admin.pages.infos.create', compact('courses', 'selectedCourseId'));
@@ -68,7 +68,7 @@ class InfoController extends Controller
     public function edit($id)
     {
         $info = Info::findOrFail($id);
-        $courses = Course::latest()->get();
+        $courses = Course::get();
 
         return view('admin.pages.infos.edit', compact('info', 'courses'));
     }

@@ -31,7 +31,7 @@
         @forelse($courseEligibilities as $courseEligibility)
             <tr class="hover:bg-gray-50 align-top">
                 <td class="border px-4 py-2 text-center">
-                    {{ $courseEligibility->id }}
+                    {{ $loop->iteration }}
                 </td>
 
                 <td class="border px-4 py-2 text-center">

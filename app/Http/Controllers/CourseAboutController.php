@@ -22,7 +22,7 @@ class CourseAboutController extends Controller
     // ✅ INDEX: 1 COURSE = 1 ROW
     public function index()
     {
-        $course_abouts = CourseAbout::latest()->get();
+        $course_abouts = CourseAbout::get();
         return view('admin.pages.course_about.index', compact('course_abouts'));
     }
 

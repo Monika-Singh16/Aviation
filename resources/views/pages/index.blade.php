@@ -1945,43 +1945,75 @@
                                     heights.
                                 </p>
                             </div>
+                        
                             <div class="contact-form-area">
-                                <form class="contact-form">
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                {{-- Validation Errors --}}
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <form class="contact-form" method="POST" action="{{ route('contact.store') }}">
+                                    @csrf
                                     <div class="row justify-content-center mb-20-none">
+                                        <input type="hidden" name="source" value="home_page">
+
                                         <div class="col-xl-6 col-lg-6 form-group">
                                             <label class="icon"><i class="icon-name_icone"></i></label>
-                                            <input type="text" class="form--control" name="name"
-                                                placeholder="Name" required="">
+                                            <input type="text" class="form--control" name="name" placeholder="Name" required="">
                                         </div>
+
                                         <div class="col-xl-6 col-lg-6 form-group">
                                             <label class="icon"><i class="las la-envelope"></i></label>
-                                            <input type="email" class="form--control" name="email"
-                                                placeholder="Email" required="">
+                                            <input type="email" class="form--control" name="email" placeholder="Email" required="">
                                         </div>
+
                                         <div class="col-xl-6 col-lg-6 form-group">
                                             <label class="icon"><i class="icon-call_icone"></i></label>
-                                            <input type="number" class="form--control" name="phone"
-                                                placeholder="Phone" required="">
+                                            <input type="text" class="form--control" name="phone" placeholder="Phone" required="">
                                         </div>
+
+                                        <!-- Course -->
                                         <div class="col-xl-6 col-lg-6 form-group">
                                             <div class="contact-select">
-                                                <div class="nice-select form--control" tabindex="0">
-                                                    <span class="current">Subject</span>
-                                                    <ul class="list">
-                                                        <li data-value="1" class="option selected">Flight Training</li>
-                                                        <li data-value="2" class="option">Admission Inquirye</li>
-                                                        <li data-value="3" class="option">Career Guidance</li>
-                                                    </ul>
-                                                </div>
+                                                {{-- <select name="subject" class="form--control nice-select" tabindex="0" required="">
+                                                    <option value="">Select Course</option>
+                                                    @foreach ($courses as $course)
+                                                        <option value="{{ $course->course_name }}">
+                                                            {{ $course->course_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select> --}}
+                                                <select name="course_id" class="form--control nice-select" required>
+                                                    <option value="">Select Course</option>
+                                                    @foreach ($courses as $course)
+                                                        <option value="{{ $course->id }}">
+                                                            {{ $course->course_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
+
+                                        <!-- Message -->
                                         <div class="col-lg-12 form-group">
                                             <label class="icon"><i class="icon-massage"></i></label>
-                                            <textarea class="form--control" placeholder="Message" required=""></textarea>
+                                            <textarea class="form--control" name="message" placeholder="Message" required=""></textarea>
                                         </div>
+
                                         <div class="col-lg-12 form-group">
-                                            <button type="submit" class="btn--base mt-10">Submit Now <i
-                                                    class="icon-Group-2361 ml-2"></i></button>
+                                            <button type="submit" class="btn--base mt-10">
+                                                Submit Now <i class="icon-Group-2361 ml-2"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -1994,6 +2026,11 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        $(document).ready(function () {
+            $('select.nice-select').niceSelect();
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const plusIcons = document.querySelectorAll('.plus-icon');

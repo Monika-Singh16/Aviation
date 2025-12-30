@@ -26,7 +26,7 @@
         @forelse($selectionProcesses as $selectionProcess)
         <tr class="hover:bg-gray-50 align-top">
             <td class="border px-4 py-2 text-center">
-                {{ $selectionProcess->id }}
+                {{ $loop->iteration }}
             </td>
 
             <td class="border px-4 py-2">

@@ -153,7 +153,7 @@
 
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Start Scroll-To-Top
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <a href="#" class="scrollToTop">
             <i class="las la-dot-circle"></i>
             <span>Top</span>
@@ -171,7 +171,7 @@
             <div class="container">
                 <div class="footer-top-area">
                     <div class="row align-items-end mb-30-none">
-                      
+                    
                     </div>
                 </div>
                 <div class="footer-bottom-area">
@@ -196,7 +196,6 @@
                                     <li><a href="{{url('/course')}}">Courses</a></li>
                                     <li><a href="{{url('/facility')}}">Facilities</a></li>
                                     <li><a a href="{{url('/the-vaa-advantages')}}">Advantages</a></li>
-                                   
                                 </ul>
                             </div>
                         </div>

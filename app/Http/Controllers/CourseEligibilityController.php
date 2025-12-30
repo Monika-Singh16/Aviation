@@ -10,13 +10,13 @@ class CourseEligibilityController extends Controller
 {
     public function index()
     {
-        $courseEligibilities = CourseEligibility::with('course')->latest()->get();
+        $courseEligibilities = CourseEligibility::with('course')->get();
         return view('admin.pages.course-eligibilities.index', compact('courseEligibilities'));
     }
 
     public function create(Request $request)
     {
-        $courses = Course::latest()->get();
+        $courses = Course::get();
         $selectedCourseId = $request->query('course_id');
 
         return view(
@@ -46,7 +46,7 @@ class CourseEligibilityController extends Controller
     public function edit($id)
     {
         $courseEligibility = CourseEligibility::findOrFail($id);
-        $courses = Course::latest()->get();
+        $courses = Course::get();
 
         return view(
             'admin.pages.course-eligibilities.edit',

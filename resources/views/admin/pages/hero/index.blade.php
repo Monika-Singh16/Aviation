@@ -34,7 +34,7 @@
         @forelse($heros as $hero)
         <tr class="hover:bg-gray-50">
 
-            <td class="border px-4 py-2 text-center">{{ $hero->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $hero->title }}</td>
 
@@ -43,7 +43,7 @@
             <td class="border px-4 py-2 text-center">
                 @if($hero->image)
                     <img src="{{ asset($hero->image) }}" 
-                         class="w-16 h-16 object-cover rounded mx-auto border">
+                        class="w-16 h-16 object-cover rounded mx-auto border">
                 @else
                     <span class="text-gray-500 text-sm">No Image</span>
                 @endif

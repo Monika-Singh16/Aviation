@@ -38,6 +38,11 @@ use App\Http\Controllers\RecordController;
 use App\Http\Controllers\ExcellenceController;
 use App\Http\Controllers\AcademicFeatureController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\ContactFormController;
+
+use App\Http\Controllers\StateController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\EnquiryController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -49,18 +54,44 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::get('/courses/{course_url}', [HomeController::class, 'course_detail']);
 //Route::get('/courses/{id}', [HomeController::class, 'course_about']);
 
+Route::post('/contact-store', [ContactFormController::class, 'store'])->name('contact.store');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/contact_form', [ContactFormController::class, 'index'])->name('admin.pages.contact_form.index');
+    Route::get('/contact_form/{inquiry}', [ContactFormController::class, 'show'])->name('admin.pages.contact_form.show');
+});
+// /* Admin */
+// Route::get('/admin/enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');
+// Route::get('/admin/enquiries/{id}', [EnquiryController::class, 'show'])->name('enquiries.show');
+// Route::delete('/admin/enquiries/{id}', [EnquiryController::class, 'destroy'])->name('enquiries.destroy');
+
+Route::get('/enquire', [HomeController::class, 'enquire']);
+Route::post('/enquire', [EnquiryController::class, 'store'])->name('enquiries.store');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/enquiries', [EnquiryController::class, 'index'])->name('admin.pages.enquiries.index');
+    Route::get('/enquiries/{id}', [EnquiryController::class, 'show'])->name('admin.pages.enquiries.show');
+});
+
+Route::get('/get-cities/{state_id}', [EnquiryController::class, 'getCities']);
+
+
 // Route::view('/courses', 'pages.course');
 Route::view('/courses-details', 'pages.course-details');
 Route::view('/admissions', 'pages.admissions');
 Route::view('/facility', 'pages.facility');
 Route::get('/gallery', [HomeController::class, 'gallery']);
 // Route::view('/gallery', 'pages.gallery');
-Route::view('/contact-us', 'pages.contact-us');
+Route::get('/contact-us', [HomeController::class, 'contact']);
+// Route::view('/contact-us', 'pages.contact-us');
 Route::view('/work-with-us', 'pages.work-with-us');
 Route::view('/faq', 'pages.faq');
-Route::view('/enquire', 'pages.enquire');
+//Route::view('/enquire', 'pages.enquire');
 Route::get('/the-vaa-advantages', [HomeController::class, 'advantage']);
 // Route::view('/the-vaa-advantages', 'pages.the-vaa-advantages');
+Route::get('/thank-you', function () {
+    return view('pages.thank-you');
+})->name('thank.you');
 
 
 /*
@@ -170,5 +201,17 @@ Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
 
         // FAQ Routes
         Route::resource('faq', FaqController::class);
+
+        // Contact Form Routes
+        Route::resource('contact_forms', ContactFormController::class);
+
+        // State Routes
+        Route::resource('states', StateController::class);  
+
+        // City Routes
+        Route::resource('cities', CityController::class);
+
+        // Enquiry Routes
+        Route::resource('enquiries', EnquiryController::class);
     });
 });

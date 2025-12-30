@@ -34,7 +34,7 @@
         @forelse($whyvaa as $item)
         <tr class="hover:bg-gray-50">
 
-            <td class="border px-4 py-2 text-center">{{ $item->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $item->main_title }}</td>
 

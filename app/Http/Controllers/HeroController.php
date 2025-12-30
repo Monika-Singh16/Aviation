@@ -10,7 +10,7 @@ class HeroController extends Controller
     // Show all hero sections
     public function index()
     {
-        $heros = Hero::latest()->get();
+        $heros = Hero::get();
         return view('admin.pages.hero.index', compact('heros'));
     }
 

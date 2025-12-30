@@ -33,7 +33,7 @@
         @forelse($why_chooses as $why_choose)
         <tr class="hover:bg-gray-50">
 
-            <td class="border px-4 py-2 text-center">{{ $why_choose->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $why_choose->title }}</td>
 

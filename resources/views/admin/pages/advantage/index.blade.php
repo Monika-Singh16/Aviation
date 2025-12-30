@@ -30,7 +30,7 @@
     <tbody>
         @forelse($advantages as $advantage)
         <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2 text-center">{{ $advantage->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2 text-center">{{ $advantage->sub_title }}</td>
             <td class="border px-4 py-2 text-center">
                 @if($advantage->banner_image)

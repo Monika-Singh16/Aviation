@@ -33,7 +33,7 @@
         @forelse($infrastructures as $infrastructure)
         <tr class="hover:bg-gray-50 text-center">
 
-            <td class="border px-4 py-2 text-center">{{ $infrastructure->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $infrastructure->title }}</td>
 

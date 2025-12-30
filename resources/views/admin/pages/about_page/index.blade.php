@@ -33,7 +33,7 @@
         @forelse($about_pages as $about_page)
         <tr class="hover:bg-gray-50">
 
-            <td class="border px-4 py-2 text-center">{{ $about_page->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $about_page->title }}</td>
 

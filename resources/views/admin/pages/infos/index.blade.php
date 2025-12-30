@@ -24,7 +24,7 @@
     <tbody>
         @forelse($infos as $info)
         <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2 text-center">{{ $info->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2">{{ $info->course->course_name ?? '-' }}</td>
             <td class="border px-4 py-2">{{ $info->title }}</td>
 

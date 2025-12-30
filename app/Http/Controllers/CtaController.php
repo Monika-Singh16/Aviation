@@ -10,7 +10,7 @@ class CtaController extends Controller
     // Show all cta sections
     public function index()
     {
-        $ctas = Cta::latest()->get();
+        $ctas = Cta::get();
         return view('admin.pages.cta.index', compact('ctas'));
     }
 

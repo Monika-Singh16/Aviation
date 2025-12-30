@@ -10,7 +10,7 @@ class RecordController extends Controller
     // Show all record sections
     public function index()
     {
-        $records = Record::latest()->get();
+        $records = Record::get();
         return view('admin.pages.record.index', compact('records'));
     }
 

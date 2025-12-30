@@ -27,9 +27,9 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($facilities as $key => $item)
+        @forelse($facilities as $item)
         <tr class="hover:bg-gray-50 transition">
-            <td class="border px-4 py-2">{{ $key + 1 }}</td>
+            <td class="border px-4 py-2">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2 font-semibold">{{ $item->heading }}</td>
             <td class="border px-4 py-2">{{ Str::limit($item->short_description, 50) }}</td>
             <td class="border px-4 py-2 text-center">

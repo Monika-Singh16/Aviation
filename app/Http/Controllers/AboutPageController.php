@@ -10,7 +10,7 @@ class AboutPageController extends Controller
     // Show all about page sections
     public function index()
     {
-        $about_pages = AboutPage::latest()->get();
+        $about_pages = AboutPage::get();
         return view('admin.pages.about_page.index', compact('about_pages'));
     }
 

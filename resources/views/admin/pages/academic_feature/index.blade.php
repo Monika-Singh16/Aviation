@@ -32,7 +32,7 @@
         @forelse($academic_features as $academic_feature)
         <tr class="hover:bg-gray-50 text-center">
 
-            <td class="border px-4 py-2 text-center">{{ $academic_feature->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $academic_feature->title }}</td>
 

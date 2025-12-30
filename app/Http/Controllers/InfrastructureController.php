@@ -10,7 +10,7 @@ class InfrastructureController extends Controller
     // Show all infrastructure sections
     public function index()
     {
-        $infrastructures = Infrastructure::latest()->get();
+        $infrastructures = Infrastructure::get();
         return view('admin.pages.infrastructure.index', compact('infrastructures'));
     }
 

@@ -10,7 +10,7 @@ class CareerController extends Controller
 {
     public function index()
     {
-        $careers = Career::latest()->get();
+        $careers = Career::get();
         return view('admin.pages.careers.index', compact('careers'));
     }
 

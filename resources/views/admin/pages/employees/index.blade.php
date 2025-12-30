@@ -20,7 +20,7 @@
     <tbody>
         @foreach($employees as $employee)
         <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2">{{ $employee->emp_id }}</td>
+            <td class="border px-4 py-2">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2">{{ $employee->name }}</td>
             <td class="border px-4 py-2">{{ $employee->email }}</td>
             <td class="border px-4 py-2">{{ $employee->role->name ?? '-' }}</td>

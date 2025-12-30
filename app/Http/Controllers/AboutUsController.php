@@ -11,7 +11,7 @@ class AboutUsController extends Controller
     // Show all About records
     public function index()
     {
-        $abouts = About::latest()->get();
+        $abouts = About::get();
         return view('admin.pages.about.index', compact('abouts'));
     }
 

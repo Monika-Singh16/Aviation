@@ -32,7 +32,7 @@
         <tr class="hover:bg-gray-50">
             
             <!-- ID -->
-            <td class="border px-4 py-2 text-center">{{ $course->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <!-- Course Name -->
             <td class="border px-4 py-2">{{ $course->course_name }}</td>

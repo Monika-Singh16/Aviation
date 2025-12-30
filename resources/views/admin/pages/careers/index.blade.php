@@ -33,7 +33,7 @@
     <tbody>
         @forelse($careers as $career)
         <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2 text-center">{{ $career->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2">{{ $career->job_title }}</td>
             <td class="border px-4 py-2">{{ $career->job_type }}</td>
             <td class="border px-4 py-2">{{ $career->industry }}</td>

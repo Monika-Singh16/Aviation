@@ -2,91 +2,91 @@
 
 @section('css')
 <style>
-/* Match select box style to input fields */
-.form--control {
-    width: 100%;
-    border: 1px solid #d5b98b;
-    border-radius: 5px;
-    background-color: #fff;
-    padding: 10px 15px;
-    font-size: 15px;
-    color: #333;
-    transition: all 0.3s ease;
-    font-family: sans-serif;
-    font-weight: 400;
-}
+    /* Match select box style to input fields */
+    .form--control {
+        width: 100%;
+        border: 1px solid #d5b98b;
+        border-radius: 5px;
+        background-color: #fff;
+        padding: 10px 15px;
+        font-size: 15px;
+        color: #333;
+        transition: all 0.3s ease;
+        font-family: sans-serif;
+        font-weight: 400;
+    }
 
-/* Ensure selects look identical */
-select.form--control {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='%23d5b98b' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 16px;
-    cursor: pointer;
-}
+    /* Ensure selects look identical */
+    select.form--control {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%23d5b98b' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 16px;
+        cursor: pointer;
+    }
 
-/* Hover & Focus effect */
-.form--control:focus {
-    border-color: #bfa15a;
-    box-shadow: 0 0 5px rgba(191, 161, 90, 0.3);
-    outline: none;
-}
+    /* Hover & Focus effect */
+    .form--control:focus {
+        border-color: #bfa15a;
+        box-shadow: 0 0 5px rgba(191, 161, 90, 0.3);
+        outline: none;
+    }
 
-/* Optional placeholder text color */
-.form--control::placeholder {
-    color: #666;
-}
+    /* Optional placeholder text color */
+    .form--control::placeholder {
+        color: #666;
+    }
 
-/* To align labels properly */
-label.fw-bold {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    font-weight: 500;
-    font-family: sans-serif;
-    font-size: 13px;
-}
+    /* To align labels properly */
+    label.fw-bold {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+        font-weight: 500;
+        font-family: sans-serif;
+        font-size: 13px;
+    }
 
-/* ✅ Fix for Nice Select text visibility on Enquiry page */
-.contact-section .nice-select .current {
-    color: #666 !important; /* visible dark gray text */
-    font-weight: 600
-    font-family: sans-serif;
-    font-size: 15px;
-}
+    /* ✅ Fix for Nice Select text visibility on Enquiry page */
+    .contact-section .nice-select .current {
+        color: #666 !important; /* visible dark gray text */
+        font-weight: 600
+        font-family: sans-serif;
+        font-size: 15px;
+    }
 
-/* ✅ Keep dropdown consistent with gold theme */
-.contact-section .nice-select {
-    border: 1px solid #dcbb87 !important;
-    border-radius: 5px;
-    height: 50px;
-    line-height: 30px;
-    padding: 10px 15px;
-}
+    /* ✅ Keep dropdown consistent with gold theme */
+    .contact-section .nice-select {
+        border: 1px solid #dcbb87 !important;
+        border-radius: 5px;
+        height: 50px;
+        line-height: 30px;
+        padding: 10px 15px;
+    }
 
-/* ✅ Optional: gold arrow */
-.contact-section .nice-select:after {
-    border-bottom: 2px solid #dcbb87;
-    border-right: 2px solid #dcbb87;
-}
-.nice-select .option {
-    cursor: pointer;
-    font-weight: 500;
-    line-height: 40px;
-    list-style: none;
-    min-height: 40px;
-    outline: none;
-    color: #666;
-    padding-left: 18px;
-    padding-right: 29px;
-    text-align: left;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-    font-size: 14px;
-}
+    /* ✅ Optional: gold arrow */
+    .contact-section .nice-select:after {
+        border-bottom: 2px solid #dcbb87;
+        border-right: 2px solid #dcbb87;
+    }
+    .nice-select .option {
+        cursor: pointer;
+        font-weight: 500;
+        line-height: 40px;
+        list-style: none;
+        min-height: 40px;
+        outline: none;
+        color: #666;
+        padding-left: 18px;
+        padding-right: 29px;
+        text-align: left;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        font-size: 14px;
+    }
 
 </style>
 @endsection
@@ -133,7 +133,7 @@ label.fw-bold {
                             <input type="text" id="captchaInput" class="form--control"
                                 placeholder="Enter the characters shown below" required>
 
-                            <div class="d-flex align-items-center justify-content-between mt-2">
+                            <div class="d-flex align-items-center justify-content-center mt-2">
                                 <canvas id="captchaCanvas" width="200" height="50"
                                     style="border: 1px solid #ddd; border-radius:5px;"></canvas>
                                 <i class="las la-sync fs-4 text-secondary" style="cursor:pointer;"
@@ -176,8 +176,23 @@ label.fw-bold {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-11">
-                <form class="contact-form shadow p-4 rounded bg-white">
-
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                {{-- Validation Errors --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form class="contact-form shadow p-4 rounded bg-white" method="POST" action="{{ route('enquiries.store') }}">
+                    @csrf
                     <h4 class="text-center mb-4 fw-semibold">Submit Your Enquiry</h4>
 
                     <div class="row justify-content-center mb-20-none">
@@ -185,7 +200,7 @@ label.fw-bold {
                         <!-- Desired Course -->
                         <div class="col-xl-12 col-lg-12 form-group">
                             <label class="fw-bold">Desired Course *</label>
-                            <select class="form--control" name="desired_course" required>
+                            {{-- <select class="form--control" name="desired_course" required>
                                 <option value="">-Select-</option>
                                 <option>CPL (Commercial Pilot Licence)</option>
                                 <option>PPL (Private Pilot Licence)</option>
@@ -193,6 +208,15 @@ label.fw-bold {
                                 <option>Integrated “Zero to Airline” Programme</option>
                                 <option>Cabin Crew</option> 
                                 <option>Others</option>
+                            </select> --}}
+
+                            <select name="course_id" class="form--control nice-select" required>
+                                <option value="">Select Course</option>
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}">
+                                        {{ $course->course_name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -209,11 +233,17 @@ label.fw-bold {
                         <!-- Gender -->
                         <div class="col-xl-12 col-lg-12 form-group">
                             <label class="fw-bold">Gender *</label>
-                            <select class="form--control" name="gender" required>
+                            {{-- <select class="form--control" name="gender">
                                 <option value="">-Select-</option>
                                 <option>Male</option>
                                 <option>Female</option>
                                 <option>Other</option>
+                            </select> --}}
+                            <select name="gender" class="form--control">
+                                <option value="">-Select-</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
 
@@ -246,24 +276,27 @@ label.fw-bold {
                             <label class="fw-bold">Alternate Contact Number</label>
                             <input type="tel" class="form--control" name="alternate_mobile" placeholder="Enter your alternate mobile number" pattern="[0-9]{10}">
                         </div>
-                         <!-- DOB -->
+                        <!-- DOB -->
                         <div class="col-xl-6 col-lg-6 form-group">
                             <label class="fw-bold">Date of Birth *</label>
                             <input type="date" class="form--control" name="dob" required>
                         </div>
 
-                         <div class="col-xl-6 col-lg-6 form-group">
+                        {{-- Nationality --}}
+                        <div class="col-xl-6 col-lg-6 form-group">
                             <label class="fw-bold"> Nationality*</label>
-                            <select class="form--control" name="desired_course" required>
+                            <select class="form--control" name="nationality" >
                                 <option value="">-Select-</option>
                                 <option>Indian Passport Holder</option>
                                 <option>Foreign Passport Holder</option>
                                 <option>Dual Citizenship Holder</option>
                             </select>
                         </div>
+
+                        {{-- DGCA --}}
                         <div class="col-xl-6 col-lg-6 form-group">
                             <label class="fw-bold"> DGCA Medical Status*</label>
-                            <select class="form--control" name="desired_course" required>
+                            <select class="form--control" name="dgca_medical_status" required>
                                 <option value="">-Select-</option>
                                 <option>Class 2 From CA-35 Available</option>
                                 <option>Class 2 Medical Assessment Available</option>
@@ -273,9 +306,10 @@ label.fw-bold {
                                 <option>Will Apply</option>
                             </select>
                         </div>
-                         <div class="col-xl-6 col-lg-6 form-group">
+                        
+                        <div class="col-xl-6 col-lg-6 form-group">
                             <label class="fw-bold">Eductational Status</label>
-                            <select class="form--control" name="desired_course" required>
+                            <select class="form--control" name="educational_status" required>
                                 <option value="">-Select-</option>
                                 <option>Pursuing Class 10th</option>
                                 <option>Pursuing Class 11th</option>
@@ -290,6 +324,7 @@ label.fw-bold {
                                 <option>Pursuing Post Graduation</option>
                             </select>
                         </div>
+
                         <div class="col-xl-6 col-lg-6 form-group">
                             <label class="fw-bold">Physics and Math in class 12th*</label>
                             <select class="form--control" name="desired_course" required>
@@ -299,7 +334,60 @@ label.fw-bold {
                                 <option>Through NIOS</option>
                             </select>
                         </div>
-                       <div class="col-xl-6 col-lg-6 form-group">
+
+                        {{-- <div class="col-xl-6 col-lg-6 form-group">
+                            <label class="fw-bold">State</label>
+                            <select class="form--control" name="state" required>
+                                <option value="">-Select State-</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Arunachal Pradesh</option>
+                                <option>Assam</option>
+                                <option>Bihar</option>
+                                <option>Chhattisgarh</option>
+                                <option>Goa</option>
+                                <option>Gujarat</option>
+                                <option>Haryana</option>
+                                <option>Himachal Pradesh</option>
+                                <option>Jammu and Kashmir</option>
+                                <option>Jharkhand</option>
+                                <option>Karnataka</option>
+                                <option>Kerala</option>
+                                <option>Madhya Pradesh</option>
+                                <option>Maharashtra</option>
+                                <option>Manipur</option>
+                                <option>Meghalaya</option>
+                                <option>Mizoram</option>
+                                <option>Nagaland</option>
+                                <option>Odisha</option>
+                                <option>Punjab</option>
+                                <option>Rajasthan</option>
+                                <option>Sikkim</option>
+                                <option>Tamil Nadu</option>
+                                <option>Telangana</option>
+                                <option>Tripura</option>
+                                <option>Uttarakhand</option>
+                                <option>Uttar Pradesh</option>
+                                <option>West Bengal</option>
+                                <option>Andaman and Nicobar Islands</option>
+                                <option>Chandigarh</option>
+                                <option>Dadra and Nagar Haveli</option>
+                                <option>Daman and Diu</option>
+                                <option>Delhi</option>
+                                <option>Lakshadweep</option>
+                                <option>Puducherry</option>
+                                <option>others</option>
+                            </select>
+
+                            <select name="state_id" id="state" class="form--control" required>
+                                <option value="">Select State</option>
+                                @foreach ($states as $state)
+                                    <option value="{{ $state->id }}">
+                                        {{ $state->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 form-group">
                             <label class="fw-bold">City</label>
                             <select class="form--control" name="city" required>
                                 <option value="">-Select City-</option>
@@ -388,49 +476,33 @@ label.fw-bold {
                                 <option>Warangal</option>
                                 <option>Other</option>
                             </select>
+
+                            <select name="city_id" id="city" class="form--control" required>
+                                <option value="">Select City</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}">
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            
+                        </div> --}}
+
+                        <!-- Remove nice-select class -->
+                        <div class="col-xl-6 col-lg-6 form-group">
+                            <label class="fw-bold">State</label>
+                            <select name="state_id" id="state" class="form--control" required>
+                                <option value="">-Select State-</option>
+                                @foreach ($states as $state)
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 form-group">
-                            <label class="fw-bold">State</label>
-                            <select class="form--control" name="state" required>
-                                <option value="">-Select State-</option>
-                                <option>Andhra Pradesh</option>
-                                <option>Arunachal Pradesh</option>
-                                <option>Assam</option>
-                                <option>Bihar</option>
-                                <option>Chhattisgarh</option>
-                                <option>Goa</option>
-                                <option>Gujarat</option>
-                                <option>Haryana</option>
-                                <option>Himachal Pradesh</option>
-                                <option>Jammu and Kashmir</option>
-                                <option>Jharkhand</option>
-                                <option>Karnataka</option>
-                                <option>Kerala</option>
-                                <option>Madhya Pradesh</option>
-                                <option>Maharashtra</option>
-                                <option>Manipur</option>
-                                <option>Meghalaya</option>
-                                <option>Mizoram</option>
-                                <option>Nagaland</option>
-                                <option>Odisha</option>
-                                <option>Punjab</option>
-                                <option>Rajasthan</option>
-                                <option>Sikkim</option>
-                                <option>Tamil Nadu</option>
-                                <option>Telangana</option>
-                                <option>Tripura</option>
-                                <option>Uttarakhand</option>
-                                <option>Uttar Pradesh</option>
-                                <option>West Bengal</option>
-                                <option>Andaman and Nicobar Islands</option>
-                                <option>Chandigarh</option>
-                                <option>Dadra and Nagar Haveli</option>
-                                <option>Daman and Diu</option>
-                                <option>Delhi</option>
-                                <option>Lakshadweep</option>
-                                <option>Puducherry</option>
-                                <option>others</option>
+                            <label class="fw-bold">City</label>
+                            <select name="city_id" id="city" class="form--control" required>
+                                <option value="">-Select City-</option>
                             </select>
                         </div>
 
@@ -455,6 +527,65 @@ label.fw-bold {
 </section>
 @endsection
 @section('js')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const stateSelect = document.getElementById('state');
+        const citySelect = document.getElementById('city');
+
+        // Initialize nice-select
+        if (typeof $.fn.niceSelect !== 'undefined') {
+            $('#state').niceSelect();
+            $('#city').niceSelect();
+        }
+
+        // State → City
+        $('#state').on('change', async function () {
+            const stateId = $(this).val();
+            const citiesUrl = "{{ url('get-cities') }}/" + stateId;
+
+            console.log('Fetching cities from:', citiesUrl);
+
+            // Reset city dropdown
+            $('#city').html('<option value="">-Select City-</option>');
+            
+            if (!stateId) {
+                $('#city').niceSelect('update'); // 👈 Update nice-select
+                return;
+            }
+
+            try {
+                const response = await fetch(citiesUrl, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('HTTP error ' + response.status);
+                }
+
+                const cities = await response.json();
+                console.log('Cities received:', cities);
+
+                cities.forEach(city => {
+                    $('#city').append(
+                        `<option value="${city.id}">${city.name}</option>`
+                    );
+                });
+
+                // 🔥 IMPORTANT: Update nice-select after adding options
+                $('#city').niceSelect('update');
+
+            } catch (error) {
+                console.error('Error loading cities:', error);
+                alert('Failed to load cities. Please try again.');
+            }
+        });
+    });
+</script>
+
 <script>
     // --- Custom CAPTCHA Generation ---
     let captchaCode = "";

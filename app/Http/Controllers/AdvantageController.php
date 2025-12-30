@@ -10,7 +10,7 @@ class AdvantageController extends Controller
     // Show all advantage sections
     public function index()
     {
-        $advantages = Advantage::latest()->get();
+        $advantages = Advantage::get();
         return view('admin.pages.advantage.index', compact('advantages'));
     }
 

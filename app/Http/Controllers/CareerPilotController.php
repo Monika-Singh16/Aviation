@@ -10,7 +10,7 @@ class CareerPilotController extends Controller
     // Show all career pilot sections
     public function index()
     {
-        $career_pilots = CareerPilot::latest()->get();
+        $career_pilots = CareerPilot::get();
         return view('admin.pages.career_pilot.index', compact('career_pilots'));
     }
 

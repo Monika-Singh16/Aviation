@@ -33,7 +33,7 @@
         @forelse($records as $record)
         <tr class="hover:bg-gray-50 text-center">
 
-            <td class="border px-4 py-2 text-center">{{ $record->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $record->title }}</td>
 

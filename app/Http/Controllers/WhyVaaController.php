@@ -9,7 +9,7 @@ class WhyVaaController extends Controller
 {
     public function index()
     {
-        $whyvaa = WhyVaa::latest()->get();
+        $whyvaa = WhyVaa::get();
         return view('admin.pages.whyvaa.index', compact('whyvaa'));
     }
 

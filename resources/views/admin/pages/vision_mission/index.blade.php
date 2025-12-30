@@ -33,7 +33,7 @@
         @forelse($vision_missions as $vision_mission)
         <tr class="hover:bg-gray-50">
 
-            <td class="border px-4 py-2 text-center">{{ $vision_mission->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
 
             <td class="border px-4 py-2">{{ $vision_mission->title }}</td>
 

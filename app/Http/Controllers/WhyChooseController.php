@@ -10,7 +10,7 @@ class WhyChooseController extends Controller
     // Show all why choose sections
     public function index()
     {
-        $why_chooses = WhyChoose::latest()->get();
+        $why_chooses = WhyChoose::get();
         return view('admin.pages.why_choose.index', compact('why_chooses'));
     }
 

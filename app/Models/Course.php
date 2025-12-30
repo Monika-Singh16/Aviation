@@ -41,4 +41,14 @@ class Course extends Model
     {
         return $this->hasMany(Info::class);
     }
+
+    public function contactForms()
+    {
+        return $this->hasMany(ContactForm::class);
+    }
+
+    public function enquiries()
+    {
+        return $this->hasMany(Enquiry::class);
+    }
 }

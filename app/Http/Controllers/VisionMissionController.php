@@ -10,7 +10,7 @@ class VisionMissionController extends Controller
     // Show all vision mission sections
     public function index()
     {
-        $vision_missions = VisionMission::latest()->get();
+        $vision_missions = VisionMission::get();
         return view('admin.pages.vision_mission.index', compact('vision_missions'));
     }
 

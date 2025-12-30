@@ -10,7 +10,7 @@ class StrengthController extends Controller
     // Show all Strength sections
     public function index()
     {
-        $strengths = Strength::latest()->get();
+        $strengths = Strength::get();
         return view('admin.pages.strength.index', compact('strengths'));
     }
 

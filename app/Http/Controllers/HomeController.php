@@ -28,9 +28,13 @@ use App\Models\CoursePhase;
 use App\Models\CourseEligibility;
 use App\Models\Info;
 use App\Models\SelectionProcess;
+use App\Models\ContactForm;
+use App\Models\State;
+use App\Models\City;
 
 class HomeController extends Controller
 {
+
     public function index (){
 
         $hero = Hero::first();
@@ -46,7 +50,20 @@ class HomeController extends Controller
         $faqs = FAQ::whereNull(['heading', 'description'])->get();
         //return $faqs;
         $why_vaa = WhyVaa::get();
-        return view('pages.index', compact('hero', 'about', 'course_detail', 'facility', 'cta', 'career_pilot','career_pilots', 'galleries', 'faq', 'faqs', 'why_vaa'));
+        $courses = Course::get();
+        return view('pages.index', compact('hero', 'about', 'course_detail', 'facility', 'cta', 'career_pilot','career_pilots', 'galleries', 'faq', 'faqs', 'why_vaa', 'courses'));
+    }
+
+    public function enquire (){
+        $courses = Course::get();
+        $states = State::get();
+        $cities = City::get();
+        return view('pages.enquire', compact('courses', 'states', 'cities')); 
+    }
+
+    public function contact (){
+        $courses = Course::get();
+        return view('pages.contact-us', compact('courses'));
     }
 
     public function gallery (){

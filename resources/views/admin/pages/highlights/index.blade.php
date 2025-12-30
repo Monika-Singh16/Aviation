@@ -31,10 +31,10 @@
     <tbody>
         @forelse($highlights as $highlight)
         <tr class="hover:bg-gray-50">
-            <td class="border px-4 py-2 text-center">{{ $highlight->id }}</td>
+            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
             <td class="border px-4 py-2 text-center">
                 <div class="w-10 h-10 flex items-center justify-center rounded-full text-white mx-auto"
-                     style="background-color: {{ $highlight->color }}">
+                    style="background-color: {{ $highlight->color }}">
                     <i class="{{ $highlight->icon }}"></i>
                 </div>
             </td>
@@ -43,8 +43,8 @@
             <td class="border px-4 py-2 text-center">
                 @if($highlight->image)
                     <img src="{{ asset('admin-assets/images/home-page/highlights/' . $highlight->image) }}"
-                         alt="Highlight Image"
-                         class="w-16 h-16 object-cover rounded-lg mx-auto border">
+                        alt="Highlight Image"
+                        class="w-16 h-16 object-cover rounded-lg mx-auto border">
                 @else
                     <span class="text-gray-500 text-sm">No image</span>
                 @endif
