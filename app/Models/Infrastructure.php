@@ -14,6 +14,7 @@ class Infrastructure extends Model
         'infrastructure_title',
         'infrastructure_description',
         'features',
+        'is_active',
     ];
     
     protected $casts = [

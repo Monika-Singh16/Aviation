@@ -1383,52 +1383,79 @@
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 About section
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+        @isset($about)
         <section class="about-section">
             <div class="container">
                 <div class="row align-items-center">
-                    <!-- Left Column - Images -->
+
+                    {{-- Left Column - Images --}}
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <div class="images-container">
-                            <div class="img-wrapper img-main">
-                                <img src="{{ asset($about->image) }}" class="img-fluid" alt="About Image" />
-                            </div>
-                            <div class="img-wrapper img-secondary">
-                                <img src="{{ asset($about->image_one) }}" alt="Aviation Professionals" />
-                            </div>
+
+                            @if(!empty($about->image_one))
+                                <div class="img-wrapper img-main">
+                                    <img src="{{ asset($about->image_one) }}"
+                                        class="img-fluid"
+                                        alt="About Image">
+                                </div>
+                            @endif
+
+                            @if(!empty($about->image_two))
+                                <div class="img-wrapper img-secondary">
+                                    <img src="{{ asset($about->image_two) }}"
+                                        alt="About Image Secondary">
+                                </div>
+                            @endif
+
                             <div class="decorative-border"></div>
                         </div>
                     </div>
 
-                    <!-- Right Column - Content -->
+                    {{-- Right Column - Content --}}
                     <div class="col-lg-6 pl-5">
                         <div class="section-header section-header--style">
-                            <span class="sub-title"> {{ $about->title }}
-                                <span class="right-icon"><i class="icon-Benefits-of-Training"></i></span>
+
+                            <span class="sub-title">
+                                {{ $about->sub_title }}
+                                <span class="right-icon">
+                                    <i class="icon-Benefits-of-Training"></i>
+                                </span>
                             </span>
-                            <h2 class="section-title text-left"> {{ $about->sub_title }}</h2>
+
+                            <h2 class="section-title text-left">
+                                {{ $about->title }}
+                            </h2>
+
                             <p class="lead-text">
-                                {{ $about->description_1 }}
+                                {{ $about->description }}
                             </p>
                         </div>
-                        <!-- Features Grid -->
-                        <div class="features-grid">
-                            @foreach (is_array($about->features) ? $about->features : json_decode($about->features, true) as $feature)
-                                <div class="about-item">
-                                    <div class="about-icon"><i class="fa fa-check"></i></div>
-                                    <span class="feature-text">{{ trim($feature) }}</span>
-                                </div>
-                            @endforeach
 
-                            <a href="{{ url('about') }}" class="btn--base">
-                                View More<i class="fas fa-arrow-right ml-1"></i>
-                            </a>
-                        </div>
+                        {{-- Features --}}
+                        @if(!empty($about->features) && count($about->features))
+                            <div class="features-grid">
+                                @foreach ($about->features as $feature)
+                                    <div class="about-item">
+                                        <div class="about-icon">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <span class="feature-text">
+                                            {{ $feature }}
+                                        </span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        <a href="{{ url('about') }}" class="btn--base mt-4">
+                            View More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
 
                     </div>
-
                 </div>
             </div>
         </section>
+        @endisset
 
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 Why Section
@@ -1446,81 +1473,6 @@
                 </div>
             </div>
         </section>
-        {{-- <section class="flex-banner-section">
-            <div class="wdt-flex-banner-options">
-                <!-- Option 1 -->
-                <div class="wdt-flex-banner-option"
-                    style="background-image: url('{{ asset( $why_vaa->image ) }}'); ">
-                    <div class="wdt-flex-banner-label">
-                        <div class="wdt-flex-banner-info">
-                            <div class="wdt-flex-banner-title">{{ $why_vaa->image_title}}</div>
-                            <div class="wdt-flex-banner-content">
-                                <h2>{{ $why_vaa->image_sub_title }}</h2>
-                                <p>
-                                    {{ $why_vaa->image_sub_description }}
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- Option 2 - Active -->
-                <div class="wdt-flex-banner-option active"
-                    style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery3.png') }}');">
-                    <div class="wdt-flex-banner-label">
-                        <div class="wdt-flex-banner-info">
-                            <div class="wdt-flex-banner-title">Modern Training Fleet</div>
-                            <div class="wdt-flex-banner-content">
-                                <h2>Advanced & Reliable Aircraft</h2>
-                                <p>
-                                    VAA operates a well-maintained fleet equipped with the latest avionics to ensure safe
-                                    and effective training.
-                                    Students learn on modern cockpit systems that prepare them for next-level commercial
-                                    aviation environments.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Option 3 -->
-                <div class="wdt-flex-banner-option"
-                    style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery2.jpg') }}');">
-                    <div class="wdt-flex-banner-label">
-                        <div class="wdt-flex-banner-info">
-                            <div class="wdt-flex-banner-title">Professional Pilot Training</div>
-                            <div class="wdt-flex-banner-content">
-                                <h2>Become a Confident & Skilled Pilot</h2>
-                                <p>
-                                    VAA provides structured training programs designed for future commercial pilots.
-                                    With expert instructors and an industry-oriented curriculum, cadets develop the skills
-                                    required to progress confidently into airline training pathways.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- Option 4 -->
-                <div class="wdt-flex-banner-option"
-                    style="background-image: url('{{ asset('assets/images/aviation/gallery_aviation/gallery3.png') }}');">
-                    <div class="wdt-flex-banner-label">
-                        <div class="wdt-flex-banner-info">
-                            <div class="wdt-flex-banner-title">Safety Equipped</div>
-                            <div class="wdt-flex-banner-content">
-                                <h2>Safety & Training Excellence</h2>
-                                <p>
-                                    Safety is the highest priority at VAA. The academy follows strict regulatory standards,
-                                    comprehensive safety procedures, and continuous monitoring to ensure a secure and
-                                    disciplined
-                                    training environment for all cadets.
-                                </p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
         <section class="flex-banner-section">
             <div class="wdt-flex-banner-options">
 
@@ -1548,9 +1500,8 @@
             </div>
         </section>
 
-
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              courses  section
+            courses  section
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
         <section class="course-section ptb-80">
@@ -1588,7 +1539,7 @@
                                                 <div class="course-content">
                                                     <div class="course-content-header">
                                                         <h3 class="title">
-                                                            <a href="{{ url('/courses') }}">
+                                                            <a href="{{ url('/course') }}">
                                                                 {{ $item->course_name }}
                                                             </a>
                                                             {{-- <a href="{{ url('/courses/'.$item->course_id) }}">
@@ -1601,7 +1552,12 @@
                                                         <p>{{ $item->description }}</p>
                                                     </div>
                                                     <div class="course-content-footer">
-                                                        <a href="{{ url('/courses') }}" class="btn--base">
+                                                        {{-- <a href="{{ url('/courses') }}" class="btn--base">
+                                                            Enroll Now
+                                                            <i class="icon-Group-2361 ml-2"></i>
+                                                        </a> --}}
+                                                        <!-- SAME URL AS NAVBAR -->
+                                                        <a href="{{ url('courses/' . $item->course_url) }}" class="btn--base">
                                                             Enroll Now
                                                             <i class="icon-Group-2361 ml-2"></i>
                                                         </a>
@@ -1621,9 +1577,8 @@
             </div>
         </section>
 
-
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               CTA section
+                CTA section
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <section class="about-section bg-overlay-base ptb-80 bg_img" data-background="{{ asset($cta->image) }}">
             {{-- <div class="about-element">
@@ -1673,7 +1628,7 @@
         </section>
 
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-               Facility section
+                Facility section
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
         <section class="facilities-section">
             <div class="container">
@@ -1691,21 +1646,24 @@
                 </div>
 
                 <!-- Light Jets - Left Aligned -->
-                @foreach ($facility as $key => $facility)
+                @foreach ($facilities as $key => $facility)
                     <div class="facility-row row align-items-center">
+
+                        {{-- EVEN --}}
                         @if ($key % 2 == 0)
-                            {{-- EVEN INDEX → IMAGE LEFT + TEXT RIGHT --}}
+
                             <div class="col-lg-6 facility-image-col" data-aos="fade-right">
                                 <div class="facility-image-wrapper">
                                     <img src="{{ asset('admin-assets/facility-page/' . $facility->image) }}"
-                                        alt="Light Jets" class="facility-img">
+                                        alt="{{ $facility->heading }}"
+                                        class="facility-img">
                                 </div>
                             </div>
 
                             <div class="col-lg-6 facility-content-col" data-aos="fade-left">
                                 <div class="facility-content">
 
-                                    <span class="facility-label">Popular Choice</span>
+                                    <span class="facility-label">{{ $facility->note }}</span>
 
                                     <h3 class="facility-title">{{ $facility->heading }}</h3>
 
@@ -1713,41 +1671,39 @@
 
                                     <p class="facility-text">{{ $facility->short_description }}</p>
 
-                                    <div class="facility-specs-row">
-                                        <div class="spec-item">
-                                            <div class="spec-icon">
-                                                <i class="fas fa-users"></i>
-                                            </div>
-                                            <div class="spec-info">
-                                                <h4>13 Passengers</h4>
-                                                <p>Comfortable Seating</p>
-                                            </div>
+                                    {{-- ✅ FEATURES FROM DB --}}
+                                    @if(!empty($facility->features))
+                                        <div class="facility-specs-row">
+                                            @foreach($facility->features as $item)
+                                                <div class="spec-item">
+                                                    <div class="spec-icon">
+                                                        <i class="{{ $item['icon'] ?? 'fas fa-check' }}"></i>
+                                                    </div>
+                                                    <div class="spec-info">
+                                                        <h4>{{ $item['title'] ?? '' }}</h4>
+                                                        <p>{{ $item['description'] ?? '' }}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="spec-item">
-                                            <div class="spec-icon">
-                                                <i class="fas fa-clock"></i>
-                                            </div>
-                                            <div class="spec-info">
-                                                <h4>7-8 Hours</h4>
-                                                <p>Flight Range</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
 
                                     <div class="facility-bottom">
-                                        <a href="{{ url('/facility') }}" class="btn--base">
+                                        <a href="{{ url('facilities/' . $facility->facility_url) }}" class="btn--base">
                                             Book Your Flight <i class="fas fa-arrow-right"></i>
                                         </a>
                                     </div>
 
                                 </div>
                             </div>
+
+                        {{-- ODD --}}
                         @else
-                            {{-- ODD INDEX → TEXT LEFT + IMAGE RIGHT --}}
+
                             <div class="col-lg-6 facility-content-col" data-aos="fade-right">
                                 <div class="facility-content">
 
-                                    <span class="facility-label">Popular Choice</span>
+                                    <span class="facility-label">{{ $facility->note }}</span>
 
                                     <h3 class="facility-title">{{ $facility->heading }}</h3>
 
@@ -1755,29 +1711,24 @@
 
                                     <p class="facility-text">{{ $facility->short_description }}</p>
 
-                                    <div class="facility-specs-row">
-                                        <div class="spec-item">
-                                            <div class="spec-icon">
-                                                <i class="fas fa-users"></i>
-                                            </div>
-                                            <div class="spec-info">
-                                                <h4>13 Passengers</h4>
-                                                <p>Comfortable Seating</p>
-                                            </div>
+                                    @if(!empty($facility->features))
+                                        <div class="facility-specs-row">
+                                            @foreach($facility->features as $item)
+                                                <div class="spec-item">
+                                                    <div class="spec-icon">
+                                                        <i class="{{ $item['icon'] ?? 'fas fa-check' }}"></i>
+                                                    </div>
+                                                    <div class="spec-info">
+                                                        <h4>{{ $item['title'] ?? '' }}</h4>
+                                                        <p>{{ $item['description'] ?? '' }}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="spec-item">
-                                            <div class="spec-icon">
-                                                <i class="fas fa-clock"></i>
-                                            </div>
-                                            <div class="spec-info">
-                                                <h4>7-8 Hours</h4>
-                                                <p>Flight Range</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
 
                                     <div class="facility-bottom">
-                                        <a href="{{ url('/facility') }}" class="btn--base">
+                                        <a href="{{ url('facilities/' . $facility->facility_url) }}" class="btn--base">
                                             Book Your Flight <i class="fas fa-arrow-right"></i>
                                         </a>
                                     </div>
@@ -1788,14 +1739,15 @@
                             <div class="col-lg-6 facility-image-col" data-aos="fade-left">
                                 <div class="facility-image-wrapper">
                                     <img src="{{ asset('admin-assets/facility-page/' . $facility->image) }}"
-                                        alt="Light Jets" class="facility-img">
+                                        alt="{{ $facility->heading }}"
+                                        class="facility-img">
                                 </div>
                             </div>
+
                         @endif
 
                     </div>
                 @endforeach
-
             </div>
 
             <!-- Background Pattern -->
@@ -1841,7 +1793,7 @@
         </section>
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Gallery Section Start
+            Gallery Section Start
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <section class="gallery-section">
             <div class="container">
@@ -1879,7 +1831,7 @@
 
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-             Faq Section Start
+            Faq Section Start
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <section class="faq-section ptb-80">
             <div class="container">
@@ -1921,7 +1873,7 @@
         </section>
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              Contact Section Start
+            Contact Section Start
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <section class="contact-section ptb-80 bg--gray">
             <div class="container">

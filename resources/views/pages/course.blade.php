@@ -1214,7 +1214,7 @@
                                 @foreach($course_eligibility->eligibilities as $item)
                                     <li>
                                         <span>
-                                            <strong>{{ $item['label'] ?? '' }}:</strong>
+                                            <strong>{{ $item['label'] ?? '' }}</strong>
                                             {{ $item['value'] ?? '' }}
                                         </span>
                                     </li>
@@ -1231,7 +1231,7 @@
 
 
                 <!-- Selection Process -->
-                @if($course_selection_process)
+                {{-- @if($course_selection_process)
                     <div class="col-lg-6 mb-4">
                         <div class="info-card">
                             <div class="card-header-custom">
@@ -1239,9 +1239,11 @@
                                 <span>Assessment & Selection</span>
                             </div>
 
-                            <p class="text-light mb-4">
-                                {{ $course_selection_process->heading }}
-                            </p>
+                            @if(!empty($course_selection_process->heading))
+                                <p class="text-light mb-4">
+                                    {{ $course_selection_process->heading }}
+                                </p>
+                            @endif
 
                             @foreach($course_selection_process->criteria as $index => $stage)
                                 <div class="stage-item">
@@ -1254,6 +1256,7 @@
                                             <span class="fee-tag">{{ $stage['extra'] }}</span>
                                         </div>
                                     @endif
+                                    <a href="#" class="btn-custom">Visit ADAPT Website</a>
                                 </div>
                             @endforeach
 
@@ -1265,6 +1268,70 @@
                             @endif
                         </div>
                     </div>
+                @endif --}}
+                @if($course_selection_process->count())
+                    @php
+                        $firstProcess = $course_selection_process->first();
+                        $stageNumber = 1;
+                    @endphp
+
+                    <div class="col-lg-6 mb-4">
+                        <div class="info-card">
+
+                            <div class="card-header-custom">
+                                <i class="fas fa-tasks"></i>
+                                <span>Assessment & Selection</span>
+                            </div>
+
+                            {{-- HEADING (show once) --}}
+                            @if(!empty($firstProcess->heading))
+                                <p class="text-light mb-4">
+                                    {{ $firstProcess->heading }}
+                                </p>
+                            @endif
+
+                            {{-- STAGES --}}
+                            @foreach($course_selection_process as $process)
+
+                                @php
+                                    $criteria = $process->criteria ?? [];
+                                    if (!is_array($criteria)) {
+                                        $criteria = json_decode($criteria, true) ?? [];
+                                    }
+                                @endphp
+
+                                @foreach($criteria as $stage)
+                                    <div class="stage-item">
+                                        <strong>
+                                            Stage {{ $stageNumber++ }}:
+                                            {{ $stage['title'] ?? '' }}
+                                        </strong>
+
+                                        <p>{{ $stage['description'] ?? '' }}</p>
+
+                                        @if(!empty($stage['extra']))
+                                            <div class="mb-3">
+                                                <span class="fee-tag">{{ $stage['extra'] }}</span>
+                                            </div>
+                                        @endif
+
+                                        {{-- <a href="#" class="btn-custom">Visit ADAPT Website</a> --}}
+                                    </div>
+                                @endforeach
+
+                            @endforeach
+
+                            {{-- NOTE (show once) --}}
+                            @if(!empty($firstProcess->note))
+                                <div class="loi-notice">
+                                    <i class="fas fa-certificate"></i>
+                                    <strong>{{ $firstProcess->note }}</strong>
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
+
                 @endif
 
             </div>

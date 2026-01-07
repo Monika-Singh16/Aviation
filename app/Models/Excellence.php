@@ -12,6 +12,7 @@ class Excellence extends Model
         'icon',
         'card_title',
         'card_description',
+        'is_active',
     ];
 
     public $timestamps = true;

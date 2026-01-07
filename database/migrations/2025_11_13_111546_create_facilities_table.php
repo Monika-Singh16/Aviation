@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('heading');
-            $table->text('short_description');
-            $table->string('image');
-            $table->longText('description');
+            $table->string('note')->nullable();
+            $table->string('heading')->nullable();
+            $table->string('facility_url');
+            $table->text('short_description')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
+            $table->json('features')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

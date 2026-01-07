@@ -16,6 +16,7 @@ class AcademicFeature extends Model
         'other_bool',
         'other_text',
         'sort_order',
+        'is_active',
     ];
 
     protected $casts = [

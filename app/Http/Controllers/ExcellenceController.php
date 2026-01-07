@@ -37,7 +37,7 @@ class ExcellenceController extends Controller
             'icon'              => $request->icon,
             'card_title'        => $request->card_title,
             'card_description'  => $request->card_description,
-            'is_active'         => $request->has('is_active'),
+            'is_active'         => (int) $request->is_active,
         ]);
 
         return redirect()
@@ -77,7 +77,7 @@ class ExcellenceController extends Controller
             'icon'              => $request->icon,
             'card_title'        => $request->card_title,
             'card_description'  => $request->card_description,
-            'is_active'         => $request->is_active,
+            'is_active'         => (int) $request->is_active,
         ]);
 
         return redirect()

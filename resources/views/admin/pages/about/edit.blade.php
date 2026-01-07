@@ -14,44 +14,23 @@
             <div>
                 <label class="block text-gray-700 font-bold mb-1">Title</label>
                 <input type="text" 
-                       name="title" 
-                       value="{{ old('title', $about->title) }}" 
-                       class="w-full border rounded-lg p-2" 
-                       required>
+                        name="title" 
+                        value="{{ old('title', $about->title) }}" 
+                        class="w-full border rounded-lg p-2">
             </div>
             <!-- Subtitle -->
             <div>
                 <label class="block text-gray-700 font-bold mb-1">Subtitle</label>
                 <input type="text" 
-                       name="sub_title" 
-                       value="{{ old('sub_title', $about->sub_title) }}" 
-                       class="w-full border rounded-lg p-2">
+                        name="sub_title" 
+                        value="{{ old('sub_title', $about->sub_title) }}" 
+                        class="w-full border rounded-lg p-2">
             </div>
-        </div>
         
-        <!-- Description 1 -->
-        <div>
-            <label class="block text-gray-700 font-bold mb-1">Description 1</label>
-            <textarea name="description_1" rows="4" class="w-full border rounded-lg p-2" required>{{ old('description_1', $about->description_1) }}</textarea>
-        </div>
-
-        <!-- Description 2 -->
-        <div>
-            <label class="block text-gray-700 font-bold mb-1">Description 2</label>
-            <textarea name="description_2" rows="4" class="w-full border rounded-lg p-2">{{ old('description_2', $about->description_2) }}</textarea>
-        </div>
-
-        <!-- Images -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <!-- Main Image -->
+            <!-- Description -->
             <div>
-                <label class="block text-gray-700 font-bold mb-1">Main Image</label>
-                <input type="file" name="image" class="w-full border rounded-lg p-2" accept="image/*">
-                @if($about->image)
-                    <img src="{{ asset($about->image) }}" 
-                         alt="Main Image" 
-                         class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
-                @endif
+                <label class="block text-gray-700 font-bold mb-1">Description 1</label>
+                <textarea name="description" rows="4" class="w-full border rounded-lg p-2" required>{{ old('description', $about->description) }}</textarea>
             </div>
 
             <!-- Image One -->
@@ -60,66 +39,62 @@
                 <input type="file" name="image_one" class="w-full border rounded-lg p-2" accept="image/*">
                 @if($about->image_one)
                     <img src="{{ asset($about->image_one) }}" 
-                         alt="Image One" 
-                         class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
+                        alt="Image One" 
+                        class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
                 @endif
+            </div>
+
+            <!-- Dynamic Features -->
+            <div>
+                <label class="block text-gray-700 font-bold mb-2">Features</label>
+                <div id="featureContainer" class="space-y-3">
+                    @php
+                        $features = is_array($about->features)
+                            ? $about->features
+                            : (json_decode($about->features, true) ?? []);
+                    @endphp
+                    @foreach($features as $feature)
+                    <div class="flex gap-2 feature-row">
+                        <button type="button" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg add-feature">+</button>
+                        <input type="text" name="features[]" value="{{ trim($feature) }}" class="w-full border rounded-lg p-2">
+                        <button type="button" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg remove-feature">−</button>
+                    </div>
+                    @endforeach
+                    
+                </div>
+
+                {{-- Status --}}
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-1 mt-2">Status</label>
+                    <select name="is_active" class="w-full border rounded-lg p-2">
+                        <option value="1" {{ $about->is_active ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ !$about->is_active ? 'selected' : '' }}>Inactive</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Image Two -->
-            {{-- <div>
+            <div>
                 <label class="block text-gray-700 font-bold mb-1">Image Two</label>
-                <input type="file" name="image_two" class="w-1/2 border rounded-lg p-2" accept="image/*">
+                <input type="file" name="image_two" class="w-full border rounded-lg p-2" accept="image/*">
                 @if($about->image_two)
                     <img src="{{ asset($about->image_two) }}" 
-                         alt="Image Two" 
-                         class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
+                        alt="Image Two" 
+                        class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
                 @endif
             </div>
-
-            <!-- Image Three -->
-            <div>
-                <label class="block text-gray-700 font-bold mb-1">Image Three</label>
-                <input type="file" name="image_three" class="w-1/2 border rounded-lg p-2" accept="image/*">
-                @if($about->image_three)
-                    <img src="{{ asset($about->image_three) }}" 
-                         alt="Image Three" 
-                         class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
-                @endif
-            </div> --}}
-        </div>
-
-        <!-- Dynamic Features -->
-        <div>
-            <label class="block text-gray-700 font-bold mb-2">Features (Bullet Points)</label>
-            <div id="featureContainer" class="space-y-2">
-                @php
-                    $features = is_array($about->features)
-                        ? $about->features
-                        : (json_decode($about->features, true) ?? []);
-                @endphp
-                @foreach($features as $feature)
-                <div class="flex gap-2">
-                    <input type="text" name="features[]" value="{{ trim($feature) }}" class="w-1/2 border rounded-lg p-2">
-                    <button type="button" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg remove-feature">−</button>
-                </div>
-                @endforeach
-                <div class="flex gap-2">
-                    <button type="button" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg add-feature">+</button>
-                </div>
-            </div>
-        </div>
 
         <!-- Submit Button -->
         <div class="pt-4">
             <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">
-                 Update
+                Update
             </button>
         </div>
     </form>
 </div>
 
 {{-- Dynamic Feature JS --}}
-<script>
+{{-- <script>
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('featureContainer');
 
@@ -129,7 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const newFeature = document.createElement('div');
             newFeature.className = 'flex gap-2';
             newFeature.innerHTML = `
-                <input type="text" name="features[]" class="w-1/2 border rounded-lg p-2" placeholder="Enter a feature">
+                <button type="button" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg add-feature">+</button>
+                <input type="text" name="features[]" class="w-full border rounded-lg p-2" placeholder="Enter a feature">
                 <button type="button" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg remove-feature">−</button>
             `;
             container.insertBefore(newFeature, container.lastElementChild);
@@ -141,5 +117,93 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+</script> --}}
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.getElementById('featureContainer');
+
+        container.addEventListener('click', function (e) {
+
+            // ADD FEATURE
+            if (e.target.classList.contains('add-feature')) {
+                e.preventDefault();
+
+                const newFeature = document.createElement('div');
+                newFeature.className = 'flex gap-2 feature-row';
+
+                newFeature.innerHTML = `
+                    <button type="button"
+                        class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg add-feature">+</button>
+
+                    <input type="text" name="features[]"
+                        class="w-full border rounded-lg p-2"
+                        placeholder="Enter a feature" required>
+
+                    <button type="button"
+                        class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg remove-feature">−</button>
+                `;
+
+                container.appendChild(newFeature);
+            }
+
+            // REMOVE FEATURE (MINIMUM 1 REQUIRED)
+            if (e.target.classList.contains('remove-feature')) {
+                e.preventDefault();
+
+                const rows = container.querySelectorAll('.feature-row');
+
+                if (rows.length === 1) {
+                    alert('At least one feature is required.');
+                    return;
+                }
+
+                e.target.closest('.feature-row').remove();
+            }
+        });
+    });
+</script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.getElementById('featureContainer');
+
+        container.addEventListener('click', function (e) {
+
+            // ADD FEATURE
+            if (e.target.classList.contains('add-feature')) {
+                e.preventDefault();
+
+                const newFeature = document.createElement('div');
+                newFeature.className = 'flex gap-2 feature-row';
+
+                newFeature.innerHTML = `
+                    <button type="button"
+                        class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg add-feature">+</button>
+
+                    <input type="text" name="features[]"
+                        class="w-full border rounded-lg p-2"
+                        placeholder="Enter a feature" required>
+
+                    <button type="button"
+                        class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg remove-feature">−</button>
+                `;
+
+                container.appendChild(newFeature);
+            }
+
+            // REMOVE FEATURE (MINIMUM 1 REQUIRED)
+            if (e.target.classList.contains('remove-feature')) {
+                e.preventDefault();
+
+                const rows = container.querySelectorAll('.feature-row');
+
+                if (rows.length === 1) {
+                    alert('At least one feature is required.');
+                    return;
+                }
+
+                e.target.closest('.feature-row').remove();
+            }
+        });
+    });
 </script>
 @endsection

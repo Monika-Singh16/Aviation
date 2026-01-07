@@ -26,7 +26,7 @@
                     @foreach($courseEligibility->eligibilities as $item)
                         <li class="text-gray-800">
                             @if(!empty($item['label']))
-                                <strong>{{ $item['label'] }}:</strong>
+                                <strong>{{ $item['label'] }}</strong>
                             @endif
                             {{ $item['value'] }}
                         </li>

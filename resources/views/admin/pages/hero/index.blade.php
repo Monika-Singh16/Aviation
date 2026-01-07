@@ -56,29 +56,30 @@
                 </span>
             </td>
 
-            <td class="border px-4 py-2 flex gap-2 justify-center">
+            <td class="border px-4 py-2 text-center align-middle">
+                <div class="flex items-center justify-center gap-2">
 
-                <a href="{{ route('hero.show', $hero->id) }}"
-                   class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
-                    <i class="fas fa-eye"></i>
-                </a>
+                    <a href="{{ route('hero.show', $hero->id) }}"
+                        class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
+                        <i class="fas fa-eye"></i>
+                    </a>
 
-                <a href="{{ route('hero.edit', $hero->id) }}" 
-                   class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
-                    <i class="fas fa-edit"></i>
-                </a>
+                    <a href="{{ route('hero.edit', $hero->id) }}" 
+                        class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
+                        <i class="fas fa-edit"></i>
+                    </a>
 
-                <form action="{{ route('hero.destroy', $hero->id) }}" 
-                      method="POST" 
-                      onsubmit="return confirm('Are you sure you want to delete this record?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" 
-                        class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form>
-
+                    <form action="{{ route('hero.destroy', $hero->id) }}" 
+                        method="POST" 
+                        onsubmit="return confirm('Are you sure you want to delete this record?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" 
+                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
             </td>
 
         </tr>

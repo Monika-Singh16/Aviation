@@ -11,6 +11,7 @@ class Record extends Model
         'title',
         'icon',
         'text',
+        'is_active',
     ];
 
     protected $casts = [

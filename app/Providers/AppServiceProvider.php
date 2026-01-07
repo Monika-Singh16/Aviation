@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+// use App\Models\Facility;
+// use Illuminate\Support\Facades\View;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -21,4 +23,12 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    // public function boot()
+    // {
+    //     View::composer('*', function ($view) {
+    //         $facilities = Facility::where('is_active', 1)->get();
+    //         $view->with('facilities', $facilities);
+    //     });
+    // }
 }

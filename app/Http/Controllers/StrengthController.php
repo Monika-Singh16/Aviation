@@ -37,7 +37,7 @@ class StrengthController extends Controller
             'card_icon'         => $request->card_icon,
             'card_title'        => $request->card_title,
             'card_description'  => $request->card_description,
-            'is_active'         => $request->has('is_active'),
+            'is_active'         => $request->is_active ? 1 : 0,
         ]);
 
         return redirect()
@@ -77,7 +77,7 @@ class StrengthController extends Controller
             'card_icon'         => $request->card_icon,
             'card_title'        => $request->card_title,
             'card_description'  => $request->card_description,
-            'is_active'         => $request->is_active,
+            'is_active'         => $request->is_active ? 1 : 0,
         ]);
 
         return redirect()

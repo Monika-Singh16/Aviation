@@ -10,7 +10,7 @@ class CoursePhaseController extends Controller
 {
     public function index()
     {
-        $coursePhases = CoursePhase::get();
+        $coursePhases = CoursePhase::where('is_active', 1)->get();
         return view('admin.pages.course-phases.index', compact('coursePhases'));
     }
 
@@ -24,12 +24,12 @@ class CoursePhaseController extends Controller
     {
         $request->validate([
             'course_id'      => 'required|exists:courses,id',
-            'heading'        => 'required|string|max:255',
-            'title'          => 'required|string|max:255',
-            'icon'           => 'required|string|max:255',
+            'heading'        => 'nullable|string|max:255',
+            'title'          => 'nullable|string|max:255',
+            'icon'           => 'nullable|string|max:255',
             'stat_icon'      => 'nullable|string|max:255',
-            'description'    => 'required|string',
-            'desc'           => 'required|string',
+            'description'    => 'nullable|string',
+            'desc'           => 'nullable|string',
             'features'       => 'nullable|array',
             'stats'          => 'nullable|array',
         ]);
@@ -62,7 +62,6 @@ class CoursePhaseController extends Controller
     {
         $coursePhase = CoursePhase::findOrFail($id);
         $courses = Course::get();
-
         return view('admin.pages.course-phases.edit', compact('coursePhase', 'courses'));
     }
 
@@ -72,12 +71,12 @@ class CoursePhaseController extends Controller
 
         $request->validate([
             'course_id'     => 'required|exists:courses,id',
-            'heading'       => 'required|string|max:255',
-            'title'         => 'required|string|max:255',
-            'icon'          => 'required|string|max:255',
+            'heading'       => 'nullable|string|max:255',
+            'title'         => 'nullable|string|max:255',
+            'icon'          => 'nullable|string|max:255',
             'stat_icon'     => 'nullable|string|max:255',
-            'description'   => 'required|string',
-            'desc'          => 'required|string',
+            'description'   => 'nullable|string',
+            'desc'          => 'nullable|string',
             'features'      => 'nullable|array',
             'stats'         => 'nullable|array',
         ]);

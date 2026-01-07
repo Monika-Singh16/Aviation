@@ -64,18 +64,9 @@
                     name="image"
                     class="w-full border px-3 py-2 rounded"
                     accept="image/*"
-                    onchange="previewImage(event)"
+                    {{-- onchange="previewImage(event)" --}}
                     required
                 >
-                @error('image')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                @enderror
-
-                <img
-                    id="imagePreview"
-                    class="mt-2 w-40 rounded hidden"
-                    alt="Course Image Preview"
-                />
             </div>
 
         </div>
@@ -100,14 +91,6 @@
     </form>
 
     <script>
-        function previewImage(event) {
-            const imagePreview = document.getElementById('imagePreview');
-            if (event.target.files && event.target.files[0]) {
-                imagePreview.src = URL.createObjectURL(event.target.files[0]);
-                imagePreview.classList.remove('hidden');
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function () {
             const nameInput = document.getElementById('course_name');
             const slugInput = document.getElementById('course_url');

@@ -51,25 +51,14 @@
 
         {{-- Image --}}
         <div>
-            <label class="block font-semibold mb-1">Image</label>
-            <input
-                type="file"
-                name="image"
-                class="w-full border px-3 py-2 rounded"
-                accept="image/*"
-                onchange="previewImage(event)"
-            >
-
-            <div class="mt-2 flex items-center gap-4">
-                <img
-                    id="imagePreview"
-                    src="{{ asset($course->image) }}"
-                    class="w-40 rounded border"
-                    alt="Course Image"
-                />
-            </div>
+            <label class="block text-gray-700 font-semibold mb-1">Image</label>
+            <input type="file" name="image" class="w-full border rounded p-2" accept="image/*">
+            @if($course->image)
+                <img src="{{ asset($course->image) }}" 
+                    alt="Image" 
+                    class="mt-3 w-24 h-24 rounded-lg object-cover border border-gray-200 shadow">
+            @endif
         </div>
-
     </div>
 
     {{-- Description --}}
@@ -88,7 +77,7 @@
     </button>
 
     <a href="{{ route('courses.index') }}"
-       class="mt-6 inline-block bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded">
+        class="mt-6 inline-block bg-gray-700 hover:bg-gray-800 text-white px-6 py-2 rounded">
         Back
     </a>
 </form>

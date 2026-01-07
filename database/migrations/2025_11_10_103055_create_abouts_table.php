@@ -13,21 +13,15 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-             $table->string('title');
+            $table->string('title');
             $table->string('sub_title');
-            $table->text('description_1');
-            $table->string('image');
+            $table->text('description');
             $table->string('image_one')->nullable();
             $table->string('image_two')->nullable();
-            $table->string('image_three')->nullable();
-          
-            $table->text('description_2')->nullable();
             
             // JSON field for bullet points
             $table->json('features');
-            
-
-
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

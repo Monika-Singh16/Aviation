@@ -29,6 +29,7 @@ class AdvantageController extends Controller
             'short_description' => 'required|string',
             'banner_image'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'ratings'           => 'required|array',
+            'is_active'         => 'nullable|boolean',
         ]);
 
         // 🔹 Convert ratings to key-value JSON
@@ -51,7 +52,7 @@ class AdvantageController extends Controller
             'short_description' => $request->short_description,
             'banner_image'      => $path . $bannerImage,
             'ratings'           => $ratings,
-            'is_active'         => $request->has('is_active'),
+            'is_active'         => $request->is_active ? 1 : 0,
         ]);
 
         return redirect()
@@ -82,7 +83,7 @@ class AdvantageController extends Controller
             'sub_title'         => 'required|string|max:255',
             'title'             => 'required|string|max:255',
             'short_description' => 'required|string',
-            'banner_image'      => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'banner_image'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'ratings'           => 'required|array',
         ]);
 
@@ -110,7 +111,7 @@ class AdvantageController extends Controller
             'short_description' => $request->short_description,
             'banner_image'      => $bannerImage,
             'ratings'           => $ratings,
-            'is_active'         => $request->is_active,
+            'is_active'         => $request->is_active ? 1 : 0,
         ]);
 
         return redirect()

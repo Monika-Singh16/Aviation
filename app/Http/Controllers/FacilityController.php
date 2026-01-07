@@ -27,24 +27,35 @@ class FacilityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'heading' => 'required|string|max:255',
-            'short_description' => 'required|string|max:500',
-            'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'note'              => 'nullable|string|max:255',
+            'heading'           => 'nullable|string|max:255',
+            'facility_url'      => 'required|string|max:255|unique:facilities,facility_url',
+            'short_description' => 'nullable|string|max:500',
+            'description'       => 'nullable|string',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'features'          => 'nullable|array',
         ]);
 
-        // Upload image
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('admin-assets/facility-page'), $imageName);
+        $imageName = null;
 
-        $facility = Facility::create([
-            'heading' => $request->heading,
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('admin-assets/facility-page'), $imageName);
+        }
+
+        Facility::create([
+            'note'              => $request->note,
+            'heading'           => $request->heading,
+            'facility_url'      => $request->facility_url,
             'short_description' => $request->short_description,
-            'description' => $request->description,
-            'image' => $imageName,
+            'description'       => $request->description,
+            'image'             => $imageName,
+            'features'          => $request->features ?? [],
+            'is_active'         => $request->is_active ?? 0,
         ]);
 
-        return redirect()->route('facilities.index')->with('success', 'Facility added successfully.');
+        return redirect()->route('facilities.index')
+            ->with('success', 'Facility added successfully.');
     }
 
     /** Show a single facility */
@@ -67,43 +78,47 @@ class FacilityController extends Controller
         $facility = Facility::findOrFail($id);
 
         $request->validate([
-            'heading' => 'required|string|max:255',
-            'short_description' => 'required|string|max:500',
-            'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'note'              => 'nullable|string|max:255',
+            'heading'           => 'nullable|string|max:255',
+            'facility_url'      => 'required|string|max:255|unique:facilities,facility_url,' . $id,
+            'short_description' => 'nullable|string|max:500',
+            'description'       => 'nullable|string',
+            'image'             => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'features'          => 'nullable|array',
         ]);
 
-        // Handle image replacement
+        // Image replace
         if ($request->hasFile('image')) {
-            if ($facility->image && File::exists(public_path('admin-assets/facility-page/' . $facility->image))) {
-                File::delete(public_path('admin-assets/facility-page/' . $facility->image));
+            if ($facility->image && file_exists(public_path('admin-assets/facility-page/'.$facility->image))) {
+                unlink(public_path('admin-assets/facility-page/'.$facility->image));
             }
 
-            $imageName = time() . '.' . $request->image->extension();
+            $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('admin-assets/facility-page'), $imageName);
             $facility->image = $imageName;
         }
 
         $facility->update([
-            'heading' => $request->heading,
+            'note'              => $request->note,
+            'heading'           => $request->heading,
+            'facility_url'      => $request->facility_url,
             'short_description' => $request->short_description,
-            'description' => $request->description,
+            'description'       => $request->description,
+            'features'          => $request->features ?? [],
+            'is_active'         => $request->is_active ?? 0,
         ]);
 
-        return redirect()->route('facilities.index')->with('success', 'Facility updated successfully.');
+        return redirect()->route('facilities.index')
+            ->with('success', 'Facility updated successfully.');
     }
 
-    /** Delete facility */
+    // ✅ DELETE
     public function destroy($id)
     {
-        $facility = Facility::findOrFail($id);
+        Facility::findOrFail($id)->delete();
 
-        if ($facility->image && File::exists(public_path('admin-assets/facility-page/' . $facility->image))) {
-            File::delete(public_path('admin-assets/facility-page/' . $facility->image));
-        }
-
-        $facility->delete();
-
-        return redirect()->route('facilities.index')->with('success', 'Facility deleted successfully.');
+        return redirect()
+            ->route('facilities.index')
+            ->with('success', 'Facility deleted successfully');
     }
 }

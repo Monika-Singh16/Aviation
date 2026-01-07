@@ -9,13 +9,11 @@ class About extends Model
     protected $fillable = [
         'title' ,
         'sub_title',
-        'description_1',
-        'image',
+        'description',
         'image_one',
         'image_two',
-        'image_three',
-        'description_2',
-        'features'
+        'features',
+        'is_active',
     ];
 
     protected $casts = [

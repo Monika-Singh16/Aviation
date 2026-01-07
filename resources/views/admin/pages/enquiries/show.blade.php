@@ -137,6 +137,13 @@
                 </p>
             </div>
 
+            <div>
+                <p class="font-semibold text-gray-600 mb-1">Submitted On</p>
+                <p class="text-gray-800">
+                    {{ $enquiry->created_at->format('d M Y') }}
+                </p>
+            </div>
+
         </div>
     </div>
 

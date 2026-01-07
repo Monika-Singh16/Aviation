@@ -53,12 +53,24 @@
                         <i class="fas fa-edit"></i>
                     </a>
 
-                    <!-- Delete -->
+                    {{-- <!-- Delete -->
                     <button onclick="openDeleteModal('course_phases', {{ $coursePhase->id }})"
                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center"
                             title="Delete Course Phase">
                         <i class="fas fa-trash"></i>
-                    </button>
+                    </button> --}}
+                    <form action="{{ route('course_phases.destroy', $coursePhase->id) }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure?')">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit"
+                            class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 </div>
             </td>
         </tr>

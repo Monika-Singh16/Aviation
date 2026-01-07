@@ -35,7 +35,8 @@
         <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
         <!-- main style css link -->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         @yield('css')
     <style>
         .modal-backdrop.show {
@@ -50,8 +51,13 @@
 @php 
     use App\Models\Course;
     $courses = Course::all();
-
 @endphp
+
+@php
+    use App\Models\Facility;
+    $facility = Facility::all();
+@endphp
+
     <div class="page-wrapper">
 
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,14 +110,26 @@
                                             </ul>
                                         </li>
                                         <!-- Facility -->
-                                        <li class="menu_has_children"><a href="{{url('/facility')}}">Facilities</a>
+                                        {{-- <li class="menu_has_children"><a href="{{url('/facility')}}">Facilities</a>
                                             <ul class="sub-menu">
                                                 <li><a href="#">Fleet</a></li>
                                                 <li><a href="#">Ground Training school</a></li>
                                                 <li><a href="#">Dhana Airbase</a></li>
                                                 <li><a href="#">Neemuch Airbase</a></li>
                                             </ul>  
-                                        </li> 
+                                        </li>  --}}
+                                        <li class="menu_has_children">
+                                            <a href="#">Facilities</a>
+                                            <ul class="sub-menu">
+                                                @foreach ($facility as $facility)
+                                                    <li>
+                                                        <a href="{{ url('facilities/' . $facility->facility_url) }}">
+                                                            {{ $facility->heading }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
                                         <!--<li class="menu_has_children"><a href="{{url('/work-with-us')}}">Work With Us</a></li>-->
                                         <li  class="menu_has_children"><a href="{{url('/the-vaa-advantages')}}">The VAA Advantages</a></li>
                                         <li class="menu_has_children"><a href="{{url('/gallery')}}">Gallery</a></li>

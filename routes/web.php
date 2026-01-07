@@ -43,6 +43,9 @@ use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\FacilityHeroController;
+use App\Http\Controllers\FacilityHero;
+use App\Http\Controllers\AircraftController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -60,14 +63,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/contact_form', [ContactFormController::class, 'index'])->name('admin.pages.contact_form.index');
     Route::get('/contact_form/{inquiry}', [ContactFormController::class, 'show'])->name('admin.pages.contact_form.show');
 });
-// /* Admin */
-// Route::get('/admin/enquiries', [EnquiryController::class, 'index'])->name('enquiries.index');
-// Route::get('/admin/enquiries/{id}', [EnquiryController::class, 'show'])->name('enquiries.show');
-// Route::delete('/admin/enquiries/{id}', [EnquiryController::class, 'destroy'])->name('enquiries.destroy');
-
+/* Admin */
 Route::get('/enquire', [HomeController::class, 'enquire']);
 Route::post('/enquire', [EnquiryController::class, 'store'])->name('enquiries.store');
-
 Route::prefix('admin')->group(function () {
     Route::get('/enquiries', [EnquiryController::class, 'index'])->name('admin.pages.enquiries.index');
     Route::get('/enquiries/{id}', [EnquiryController::class, 'show'])->name('admin.pages.enquiries.show');
@@ -75,11 +73,15 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/get-cities/{state_id}', [EnquiryController::class, 'getCities']);
 
+// Route::view('/facility', 'pages.facilities')->name('facilities');
 
+Route::get('/facilities/{facility_url}', [HomeController::class, 'facilities']);
+// Route::get('/facilities/{facility_url}', [HomeController::class, 'facilities'])
+//     ->name('facilities');
 // Route::view('/courses', 'pages.course');
 Route::view('/courses-details', 'pages.course-details');
 Route::view('/admissions', 'pages.admissions');
-Route::view('/facility', 'pages.facility');
+// Route::view('/facility', 'pages.facility');
 Route::get('/gallery', [HomeController::class, 'gallery']);
 // Route::view('/gallery', 'pages.gallery');
 Route::get('/contact-us', [HomeController::class, 'contact']);
@@ -213,5 +215,11 @@ Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
 
         // Enquiry Routes
         Route::resource('enquiries', EnquiryController::class);
+
+        // Facility Routes
+        Route::resource('facility_hero', FacilityHeroController::class);
+
+        // Aircrafts Routes
+        Route::resource('aircraft', AircraftController::class);
     });
 });

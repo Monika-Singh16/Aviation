@@ -8,38 +8,38 @@
 
     <form action="{{ route('hero.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {{-- Title --}}
+            <div>
+                <label class="block text-gray-700 font-semibold">Title</label>
+                <input type="text" name="title" class="w-full border rounded-lg p-2" required>
+            </div>
 
-        {{-- Title --}}
-        <div>
-            <label class="block text-gray-700 font-semibold">Title</label>
-            <input type="text" name="title" class="w-1/2 border rounded-lg p-2" required>
-        </div>
+            {{-- Sub Title --}}
+            <div>
+                <label class="block text-gray-700 font-semibold">Sub Title</label>
+                <input type="text" name="sub_title" class="w-full border rounded-lg p-2" required>
+            </div>
 
-        {{-- Sub Title --}}
-        <div>
-            <label class="block text-gray-700 font-semibold">Sub Title</label>
-            <input type="text" name="sub_title" class="w-1/2 border rounded-lg p-2" required>
-        </div>
+            {{-- Image --}}
+            <div>
+                <label class="block text-gray-700 font-semibold">Banner Image</label>
+                <input type="file" name="image" class="w-full border rounded-lg p-2" accept="image/*">
 
-        {{-- Description --}}
-        <div>
-            <label class="block text-gray-700 font-semibold">Description</label>
-            <textarea name="description" rows="4" class="w-1/2 border rounded-lg p-2"></textarea>
-        </div>
+                {{-- Status --}}
+                <label class="block text-gray-700 font-semibold mb-1 mt-3">Status</label>
+                <select name="is_active" class="w-full border rounded-lg p-2">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+            </div>
 
-        {{-- Image --}}
-        <div>
-            <label class="block text-gray-700 font-semibold">Banner Image</label>
-            <input type="file" name="image" class="w-1/2 border rounded-lg p-2" accept="image/*">
-        </div>
+            {{-- Description --}}
+            <div>
+                <label class="block text-gray-700 font-semibold">Description</label>
+                <textarea name="description" rows="4" class="w-full border rounded-lg p-2"></textarea>
+            </div>
 
-        {{-- Status --}}
-        <div>
-            <label class="block text-gray-700 font-semibold mb-1">Status</label>
-            <select name="is_active" class="w-1/2 border rounded-lg p-2">
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
-            </select>
         </div>
 
         {{-- Submit --}}

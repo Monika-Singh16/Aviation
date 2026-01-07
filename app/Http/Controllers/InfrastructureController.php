@@ -31,6 +31,7 @@ class InfrastructureController extends Controller
             'infrastructure_title'        => 'nullable|string|max:255',
             'infrastructure_description'  => 'nullable|string',
             'features'                    => 'nullable|array',
+            'is_active'                   => 'nullable|boolean',
         ]);
         
         $imagePath = null;
@@ -49,7 +50,7 @@ class InfrastructureController extends Controller
             'infrastructure_title'        => $request->infrastructure_title,
             'infrastructure_description'  => $request->infrastructure_description,
             'features'                    => $request->features,
-            'is_active'                   => $request->has('is_active'),
+            'is_active'                   => (int) $request->is_active,
         ]);
 
         return redirect()
@@ -101,7 +102,7 @@ class InfrastructureController extends Controller
             'infrastructure_title'        => $request->infrastructure_title,
             'infrastructure_description'  => $request->infrastructure_description,
             'features'                    => $request->features,
-            'is_active'                   => $request->is_active,
+            'is_active'                   => (int) $request->is_active,
         ]);
 
         return redirect()

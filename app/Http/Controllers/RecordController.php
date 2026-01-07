@@ -44,7 +44,7 @@ class RecordController extends Controller
             'title'      => $request->title,
             'icon'       => $request->icon,
             'text'       => $text,
-            'is_active'  => $request->has('is_active'),
+            'is_active'  => (int) $request->is_active,
         ]);
 
         return redirect()
@@ -91,7 +91,7 @@ class RecordController extends Controller
             'title'     => $request->title,
             'icon'      => $request->icon,
             'text'      => $text,
-            'is_active' => $request->is_active,
+            'is_active' => (int) $request->is_active,
         ]);
 
         return redirect()
